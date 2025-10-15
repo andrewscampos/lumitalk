@@ -1,541 +1,1008 @@
+<!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumiCode - Plataforma de Atendimento WhatsApp Multiusuários</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/css/elegant-icons.min.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <title>LumiTalk - Plataforma Multiatendimento WhatsApp com Agentes de IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        :root {
+            --cor-principal: #1DDEC6;
+            --cor-secundaria: #0a1828;
+            --cor-fundo-claro: #f8f9fa;
+            --cor-texto-claro: #ffffff;
+            --cor-texto-escuro: #2c3e50;
+            --cor-accent: #17b3a0;
+        }
 
-    <meta property="og:url" content="https://lumicode.com.br" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="LumiCode - Plataforma de Atendimento WhatsApp Multiusuários" />
-    <meta property="og:description"
-        content="Transforme o atendimento da sua empresa com nossa plataforma multiusuários para WhatsApp. API oficial, chatbots, relatórios e muito mais." />
-    <meta property="og:image" content="https://lumicode.com.br/assets/images/home_2/dashboard-1.png" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <meta name="description"
-        content="Plataforma profissional de atendimento WhatsApp multiusuários. Organize sua equipe, automatize respostas e escale seu negócio com segurança.">
-    <meta name="keywords"
-        content="whatsapp, multiusuários, atendimento, chatbot, api oficial, plataforma, automação, customer service">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200;300;400;600&display=swap">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" crossorigin="true" href="https://fonts.gstatic.com">
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--cor-texto-escuro);
+            background-color: var(--cor-fundo-claro);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-accent) 100%);
+            color: var(--cor-texto-claro);
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(29, 198, 231, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(29, 198, 231, 0.4);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--cor-secundaria);
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* HEADER */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--cor-texto-escuro);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cor-principal), var(--cor-accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-principal);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: var(--cor-secundaria);
+            margin: 4px 0;
+            transition: 0.4s;
+            border-radius: 3px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* HERO SECTION */
+        #inicio {
+            background: linear-gradient(135deg, var(--cor-secundaria) 0%, #0f2942 100%);
+            color: var(--cor-texto-claro);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #inicio::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(29, 198, 231, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        #inicio::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        #inicio h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #inicio p {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-cta-group {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-cta-group .cta-button:last-child {
+            background: transparent;
+            border: 2px solid var(--cor-principal);
+            margin-left: 15px;
+            box-shadow: none;
+        }
+
+        .hero-cta-group .cta-button:last-child:hover {
+            background: var(--cor-principal);
+            color: var(--cor-texto-claro);
+        }
+
+        .hero-image {
+            margin-top: 60px;
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--cor-principal);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        /* RECURSOS */
+        #recursos {
+            padding: 100px 0;
+            background-color: var(--cor-texto-claro);
+            position: relative;
+        }
+
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .recurso-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recurso-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cor-principal), var(--cor-accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .recurso-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .recurso-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(29, 198, 231, 0.15);
+        }
+
+        .recurso-item h3 {
+            color: var(--cor-secundaria);
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .recurso-icon {
+            font-size: 42px;
+            background: linear-gradient(135deg, var(--cor-principal), var(--cor-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* IA & VENDAS */
+        #ia-vendas {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #ia-vendas::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 198, 231, 0.05) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ia-vendas-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ia-vendas-text {
+            flex: 1;
+        }
+
+        .ia-vendas-text h2 {
+            font-size: 44px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--cor-principal), var(--cor-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .ia-vendas-text ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .ia-vendas-text ul li {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .ia-vendas-text ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--cor-principal);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+        }
+
+        .ia-vendas-image {
+            flex: 1;
+        }
+
+        .ia-vendas-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .ia-vendas-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* PLANOS */
+        #planos {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--cor-texto-claro);
+            position: relative;
+        }
+
+        .section-planos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plano-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 40px 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .plano-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cor-principal);
+            box-shadow: 0 15px 50px rgba(29, 198, 231, 0.2);
+        }
+
+        .plano-card.destaque {
+            border-color: var(--cor-principal);
+            background: linear-gradient(135deg, #ffffff 0%, rgba(29, 198, 231, 0.05) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(29, 198, 231, 0.25);
+        }
+
+        .plano-card .tag-destaque {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--cor-principal), var(--cor-accent));
+            color: var(--cor-texto-claro);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(29, 198, 231, 0.3);
+        }
+
+        .plano-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--cor-secundaria);
+        }
+
+        .plano-card .preco-antigo {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .plano-card .preco {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cor-principal), var(--cor-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .plano-card .base-preco {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .plano-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+            min-height: 200px;
+        }
+
+        .plano-card ul li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .plano-card ul li::before {
+            content: "✓";
+            color: var(--cor-principal);
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+        }
+
+        .plano-card .detalhes-adicionais {
+            font-size: 13px;
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+            color: #666;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--cor-secundaria) 0%, #0f2942 100%);
+            color: var(--cor-texto-claro);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--cor-principal);
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--cor-principal);
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 24px;
+            color: var(--cor-principal);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--cor-accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* BOTÃO WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366, #20ba5a);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            line-height: 60px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            #inicio h1 {
+                font-size: 42px;
+            }
+
+            .ia-vendas-content {
+                flex-direction: column-reverse;
+                gap: 40px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
+                display: none;
+            }
+
+            #inicio h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .ia-vendas-text h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .plano-card ul {
+                min-height: auto;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+                line-height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-839629314"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<body>
 
-    gtag('config', 'AW-839629314');
-</script>
-
-<body cz-shortcut-listen="true" class="">
-    <!-- Preloader -->
-    <div id="preloader" class="" style="display: none;">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="round_spinner">
-                <div class="spinner"></div>
-                <div class="text">
-                    <img class="mx-auto" src="assets/images/icon.png" alt="LumiCode logo" style="width: 130px">
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#inicio" class="logo">LumiTalk</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#ia-vendas">IA & Vendas</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <a href="https://app.lumitalk.com.br" class="cta-button">Teste Grátis</a>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-            </div>
-            <p><strong></strong></p>
+            </nav>
         </div>
-    </div>
-
-    <!-- Header Area -->
-    <header class="header-area">
-        <nav class="navbar navbar-expand-lg menu_one software-menu sticky-nav">
-            <div class="container-fluid">
-                <a class="navbar-brand header_logo" href="#">
-                    <img class="white_logo main_logo" src="assets/images/icon.png" alt="LumiCode logo"
-                        style="width:80px">
-                    <span style="color: white; font-weight: 600; margin-left: 10px;">Lumitalk</span>
-                </a>
-
-                <button class="navbar-toggler collapsed" id="btn-menu" type="button" aria-controls="navbarText"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="menu_toggle">
-                        <span class="hamburger">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                        <span class="hamburger-cross">
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </span>
-                </button>
-
-                <div class="navbar-collapse justify-content-end collapse" id="navbarText">
-                    <ul class="navbar-nav menu ml-auto">
-                        <li class="nav-item active">
-                            <a href="#" class="nav-link active">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#recursos" class="nav-link">Recursos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#como-funciona" class="nav-link">Como Funciona</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#precos" class="nav-link">Preços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contato" class="nav-link">Contato</a>
-                        </li>
-                    </ul>
-                    <div class="right-nav">
-                        <a class="btn btn-outline-primary" href="https://app.lumitalk.com.br/">Login</a>
-                        <a class="btn btn-red" href="https://app.lumitalk.com.br/cadastro">Teste Grátis</a>
-                    </div>
-                </div>
-
-                <script>
-                    document.getElementById("btn-menu").addEventListener("click", function () {
-                        document.getElementById("navbarText").classList.toggle("show");
-                    });
-                </script>
-            </div>
-        </nav>
     </header>
 
-    <main>
-        <!-- Banner Area -->
-        <section class="banner-area-2" style="background-image: url(assets/images/banner/banner-shape-4.png);">
-            <div class="banner-shapes">
-                <div class="shape"> <img src="assets/images/banner/banner-shape-5.png" alt="shapes"></div>
-                <div class="shape"> <img data-parallax='{"x":250, "y": 70, "rotateY":300}'
-                        src="assets/images/home_2/banner-shape-1.png" alt="shapes"
-                        style="transform:translate3d(0.029px, 0.029px, 0px) rotateX(0deg) rotateY(0.029deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);">
-                </div>
-                <div class="shape"> <img data-parallax='{"x":-50, "y": 270, "rotateZ":500}'
-                        src="assets/images/home_2/banner-shape-2.png" alt="shapes"
-                        style="transform:translate3d(0px, 0.029px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.029deg) scaleX(1) scaleY(1) scaleZ(1);">
-                </div>
-            </div>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xxl-8 col-xl-7 pr-60">
-                        <div class="banner-left wow fadeInLeft"
-                            style="visibility: visible; animation-name: fadeInLeft;">
-                            <h1>Transforme o Atendimento da Sua Empresa com WhatsApp Multiusuários</h1>
-                            <p class="banner-para">
-                                Uma única plataforma para organizar toda sua equipe de atendimento no WhatsApp.
-                                Com API oficial, chatbots inteligentes, transferência de conversas e relatórios
-                                completos.
-                                <strong>Sem risco de banimento, máxima segurança.</strong>
-                            </p>
-                            <div class="banner-features" style="margin: 30px 0;">
-                                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                                    <div style="display: flex; align-items: center;">
-                                        <span style="color: #1DC6E7; margin-right: 8px;">✓</span>
-                                        <span>Vários atendentes, 1 número</span>
-                                    </div>
-                                    <div style="display: flex; align-items: center;">
-                                        <span style="color: #1DC6E7; margin-right: 8px;">✓</span>
-                                        <span>API Oficial WhatsApp</span>
-                                    </div>
-                                    <div style="display: flex; align-items: center;">
-                                        <span style="color: #1DC6E7; margin-right: 8px;">✓</span>
-                                        <span>Chatbots Inteligentes</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 30px;">
-                                <a href="https://app.lumitalk.com.br/cadastro" class="btn btn-red"
-                                    style="margin-right: 15px;">Teste 2 Dias Grátis</a>
-                                <a href="https://app.lumitalk.com.br/cadastro" class="btn  "
-                                    style="color: white ">Falar com Consultor</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 col-xl-5">
-                        <div class="banner-right wow fadeInRight"
-                            style="visibility: visible; animation-name: fadeInRight;">
-                            <img src="assets/images/home_2/hero-img.png" alt="Plataforma WhatsApp Multiusuários">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como Funciona -->
-        <section id="como-funciona" class="features-area-ten pt-120 pb-120">
-            <div class="bg-shape">
-                <img src="assets/images/home_2/wave.png" alt="">
-            </div>
-            <div class="container pt-lg-110 pb-lg-110 pt-80 pb-80">
-                <div class="row align-items-center gy-lg-0 gy-4">
-                    <div class="col-lg-6 pe-lg-0 wow fadeInLeft"
-                        style="visibility: visible; animation-name: fadeInLeft;">
-                        <h3>Como Funciona a LumiCode</h3>
-                        <p>Nossa plataforma conecta sua empresa ao WhatsApp através da API oficial, permitindo que
-                            múltiplos atendentes trabalhem simultaneamente no mesmo número, com organização por setores
-                            e automação inteligente.</p>
-
-                        <div style="margin: 30px 0;">
-                            <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-                                <div
-                                    style="background: #1DC6E7; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold;">
-                                    1</div>
-                                <div>
-                                    <h5 style="margin-bottom: 5px;">Conecte seu WhatsApp</h5>
-                                    <p style="margin-bottom: 0; color: #666;">Integração simples e segura com a API
-                                        oficial do WhatsApp</p>
-                                </div>
-                            </div>
-
-                            <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
-                                <div
-                                    style="background: #1DC6E7; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold;">
-                                    2</div>
-                                <div>
-                                    <h5 style="margin-bottom: 5px;">Configure sua Equipe</h5>
-                                    <p style="margin-bottom: 0; color: #666;">Organize atendentes por departamentos:
-                                        vendas, suporte, financeiro</p>
-                                </div>
-                            </div>
-
-                            <div style="display: flex; align-items: flex-start;">
-                                <div
-                                    style="background: #1DC6E7; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold;">
-                                    3</div>
-                                <div>
-                                    <h5 style="margin-bottom: 5px;">Comece a Atender</h5>
-                                    <p style="margin-bottom: 0; color: #666;">Atendimento profissional com chatbots,
-                                        transferências e histórico completo</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="dash-img pl-lg-40 wow fadeInRight"
-                            style="visibility: visible; animation-name: fadeInRight;">
-                            <img src="assets/images/apresentacao.gif" width="100%" alt="Demo da plataforma">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recursos -->
-        <section id="recursos" class="outstanding-feature-area pt-120 pb-120">
-            <div class="section-title-center pt-50 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <h3>Recursos Completos para Seu Atendimento</h3>
-                <p>Tudo que sua empresa precisa para profissionalizar o atendimento no WhatsApp</p>
-            </div>
-            <div class="container pb-90 pt-3">
-                <div class="row gy-lg-0 gy-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.54 0 3-.35 4.31-.99l7.38 2.05A1 1 0 0 0 24 22l-2.05-7.38c.64-1.31.99-2.77.99-4.31C22.94 6.48 18.46 2 12 2zm0 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" />
-                                <circle fill="#1DC6E7" cx="9" cy="12" r="1" />
-                                <circle fill="#1DC6E7" cx="12" cy="12" r="1" />
-                                <circle fill="#1DC6E7" cx="15" cy="12" r="1" />
-                            </svg>
-                            <h5>Multiusuários</h5>
-                            <p>Vários atendentes operando simultaneamente no mesmo número do WhatsApp, com organização
-                                por setores e hierarquias.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.5 15.5a1 1 0 0 1-1.4.1L12 16l-2.1 1.6a1 1 0 0 1-1.4-.1 1 1 0 0 1-.1-1.4L10 14l-1.6-2.1a1 1 0 0 1 .1-1.4 1 1 0 0 1 1.4-.1L12 12l2.1-1.6a1 1 0 0 1 1.4.1 1 1 0 0 1 .1 1.4L14 14l1.6 2.1a1 1 0 0 1-.1 1.4z" />
-                            </svg>
-                            <h5>API Oficial WhatsApp</h5>
-                            <p>Integração com a API oficial do WhatsApp. Sem risco de banimento, máxima estabilidade e
-                                selo de verificação oficial.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                            </svg>
-                            <h5>Chatbots Inteligentes</h5>
-                            <p>Automatize respostas frequentes, qualifique leads e direcione clientes para os setores
-                                corretos 24 horas por dia.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                            </svg>
-                            <h5>Relatórios Completos</h5>
-                            <p>Analise performance da equipe, tempo de resposta, satisfação do cliente e muito mais com
-                                dashboards em tempo real.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
-                            </svg>
-                            <h5>Transferência de Conversas</h5>
-                            <p>Transfira conversas entre atendentes e setores com histórico completo, garantindo
-                                continuidade no atendimento.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div style="text-align: center; padding: 30px;">
-                            <svg style="margin-bottom: 20px;" width="60" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path fill="#1DC6E7"
-                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                            <h5>Tags e Organizacao</h5>
-                            <p>Organize contatos com tags personalizadas, histórico de interações e dados importantes
-                                para um atendimento personalizado.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Preços -->
-        <section id="precos" align="center" class="choose-plan-area pt-120 pb-120">
-            <div align="center"  class="   pt-50 pb-50" style="  margin: 0 auto;">
-                <div class="section-title-center">
-                    <h3 class="wow fadeInUp">Planos Flexíveis para Seu Negócio</h3>
-                    <p class="wow fadeInUp" data-wow-delay="0.2s">Escolha o plano ideal para o tamanho da sua equipe.
-                        Todos incluem API oficial do WhatsApp e suporte especializado.</p>
-                </div>
-
-
-                <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="tab-content features-tab-content" style="width: 80%;">
-                        <div class="tab-pane fade show active">
-                            <div class="row gy-xl-0 gy-4 pricing-item-two-container justify-content-center">
-
-
-                                <!-- START -->
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="pricing-item-2 wow fadeInUp" data-wow-delay="0.1s">
-                                        <img src="assets/images/home_2/user-icon-1.png" alt="icon">
-                                        <h4>Start</h4>
-                                        <h5>Ideal para pequenas equipes</h5>
-                                        <ul class="mt-0 pt-0">
-                                            <li>• 5 usuários inclusos</li>
-                                            <li>• 1 número WhatsApp</li>
-                                            <li>• 300 templates/mês</li>
-                                            <li>• Relatórios essenciais</li>
-                                            <li>• Suporte por e-mail (48h)</li>
-                                            <li>• API oficial WhatsApp</li>
-                                            <li>• Número adicional R$ 99/mês</li>
-                                            <li>• Usuário extra R$ 90/mês</li>
-                                            <li>• Setup R$ 0</li>
-                                        </ul>
-                                        <div class="price">R$ 290/mês</div>
-                                        <div class="pack-feature">por conta</div>
-                                        <a href="https://app.lumitalk.com.br/cadastro" class="btn">Teste 2 Dias
-                                            Grátis</a>
-                                    </div>
-                                </div>
-
-
-                                <!-- LIGHT (DESTAQUE) -->
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="pricing-item-2 wow fadeInUp active" data-wow-delay="0.2s">
-                                        <img src="assets/images/home_2/user-icon-2.png" alt="icon">
-                                        <h4>Light</h4>
-                                        <h5>Para empresas em crescimento</h5>
-                                        <ul class="mt-0 pt-0">
-                                            <li>• 20 usuários inclusos</li>
-                                            <li>• 1 número WhatsApp</li>
-                                            <li>• 800 templates/mês</li>
-                                            <li>• Relatórios completos</li>
-                                            <li>• Suporte chat + e-mail (24h)</li>
-                                            <li>• API oficial WhatsApp</li>
-                                            <li>• Tags e organização</li>
-                                            <li>• Número adicional R$ 99/mês</li>
-                                            <li>• Usuário extra R$ 90/mês</li>
-                                            <li>• Setup R$ 300/linha (uma vez)</li>
-                                        </ul>
-                                        <div class="price">R$ 450/mês</div>
-                                        <div class="pack-feature">por conta</div>
-                                        <a href="https://app.lumitalk.com.br/cadastro" class="btn">Teste 2 Dias
-                                            Grátis</a>
-                                    </div>
-                                </div>
-
-
-                                <!-- PLUS -->
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="pricing-item-2 wow fadeInUp" data-wow-delay="0.3s">
-                                        <img src="assets/images/home_2/user-icon-3.png" alt="icon">
-                                        <h4>Plus</h4>
-                                        <h5>Escala e prospecção avançadas</h5>
-                                        <ul class="mt-0 pt-0">
-                                            <li>• 30 usuários inclusos (limite até 50)</li>
-                                            <li>• 1 número WhatsApp</li>
-                                            <li>• 2.000 templates/mês</li>
-                                            <li>• Chatbots de saudação + roteamento</li>
-                                            <li>• Relatórios em tempo real + etiquetas</li>
-                                            <li>• Suporte chat + e-mail (8×5)</li>
-                                            <li>• Número adicional R$ 99/mês</li>
-                                            <li>• Usuário extra R$ 90/mês</li>
-                                            <li>• Setup R$ 800/linha (uma vez)</li>
-                                        </ul>
-                                        <div class="price">R$ 990/mês</div>
-                                        <div class="pack-feature">por conta</div>
-                                        <a href="https://app.lumitalk.com.br/cadastro" class="btn">Teste 2 Dias
-                                            Grátis</a>
-                                    </div>
-                                </div>
-
-
-                                <!-- ENTERPRISE -->
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="pricing-item-2 wow fadeInUp" data-wow-delay="0.4s">
-                                        <img src="assets/images/home_2/user-icon-3.png" alt="icon">
-                                        <h4>Enterprise</h4>
-                                        <h5>Times robustos e integrações</h5>
-                                        <ul class="mt-0 pt-0">
-                                            <li>• Tudo do plano Plus</li>
-                                            <li>• 50 usuários inclusos (limite até 100)</li>
-                                            <li>• 5.000 templates/mês</li>
-                                            <li>• Prioridade de suporte (12×6)</li>
-                                            <li>• Número adicional R$ 99/mês</li>
-                                            <li>• Usuário extra R$ 90/mês</li>
-                                            <li>• Setup R$ 1.500/linha (uma vez)</li>
-                                        </ul>
-                                        <div class="price">R$ 1.790/mês</div>
-                                        <div class="pack-feature">por conta</div>
-                                        <a href="https://app.lumitalk.com.br/cadastro" class="btn">Falar com
-                                            Consultor</a>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Observações / Política de uso -->
-                    <div class="row mt-5">
-                        <div class="col-lg-10 mx-auto">
-                            <div class="wow fadeInUp" data-wow-delay="0.1s"
-                                style="background:#0b0b0b; border-radius:12px; padding:24px; color:#cfcfcf;">
-                                <h5 style="color:#fff; margin-bottom:10px;">Política de uso e excedentes</h5>
-                                <p style="margin:0;">
-                                    • <strong>Templates excedentes</strong>: seguem a tabela oficial da Meta (Brasil)
-                                    com <strong>+25% de taxa de processamento</strong>.<br>
-                                    • <strong>Templates/mês</strong> referem-se a mensagens de template enviadas via API
-                                    oficial. Demais mensagens obedecem às regras da Meta/fornecedor.<br>
-                                    • Todos os planos incluem <strong>1 número WhatsApp</strong>. Números adicionais:
-                                    <strong>R$ 99/mês</strong>. Usuário extra: <strong>R$ 90/mês</strong>.<br>
-                                    • Valores por conta. Impostos podem variar conforme regime tributário.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-area-three">
-            <div class="container">
-                <div class="cta-round wow zoomIn" style=" visibility: visible; animation-name: zoomIn;">
-                    <h3 style="color:black;">Pronto para Transformar seu Atendimento?</h3>
-                    <p>Teste nossa plataforma por 2 Dias grátis e veja como podemos revolucionar a comunicação da sua
-                        empresa no WhatsApp.</p>
-                    <div style="margin-top: 30px;">
-                        <a href="https://app.lumitalk.com.br/cadastro" class="btn btn-red"
-                            style="margin-right: 15px; color:black;">Teste 2 Dias Grátis</a>
-                        <a href="https://app.lumitalk.com.br/cadastro" style="color:black;"
-                            class="btn btn-outline-light">Falar com Consultor</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer id="contato" class="footer-software bg-black">
+    <section id="inicio">
         <div class="container">
-            <div class="footer-bottom wow fadeInUp" data-wow-delay="0.1s">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h4 style="color: white; margin-bottom: 20px;">Contato</h4>
-                        <div style="color: #ccc;">
-                            <p><strong>Email:</strong> contato@lumicode.com.br</p>
-                            <p><strong>Telefone:</strong> (11) 95161-3341</p>
-                            <p><strong>Endereço:</strong> Rua James Ensor, 119<br>
-                                Parque Regina - São Paulo, SP</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div style="color: #ccc; text-align: right;">
-                            <div style="margin-bottom: 20px;">
-                                <p><strong>LUMICODE SOLUTIONS LTDA - ME</strong></p>
-                                <p>CNPJ: 23.756.362/0001-02</p>
-                                <p>© 2025 LumiCode - Todos os direitos reservados</p>
-                            </div>
-                        </div>
-                    </div>
+            <h1>LumiTalk: Centralize, Automatize e Escale Suas Vendas no WhatsApp.</h1>
+            <p>A plataforma oficial que unifica seu atendimento, potencializa sua equipe e garante vendas 24/7 com Agentes de Inteligência Artificial.</p>
+            <div class="hero-cta-group">
+                <a href="#planos" class="cta-button">Comece a Escalar Seu Atendimento Agora!</a>
+                <a href="#contato" class="cta-button">Agende uma Demonstração</a>
+            </div>
+            <img src="./assets/images/operacao.png" alt="Interface do Sistema LumiTalk" class="hero-image">
+        </div>
+    </section>
+
+    <section id="recursos">
+        <div class="container">
+            <h2 class="section-title">Soluções Completas para Alta Performance</h2>
+            <p class="section-subtitle">Ferramentas poderosas para transformar seu atendimento e impulsionar suas vendas</p>
+            <div class="recursos-grid">
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-users"></i>
+                    <h3>Caixa de Entrada Única</h3>
+                    <p>Um número, múltiplos atendentes. Distribua conversas manual ou automaticamente por setor. Histórico de 360º do cliente.</p>
                 </div>
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-robot"></i>
+                    <h3>Agentes de IA e Chatbots</h3>
+                    <p><strong>Tenha atendentes de IA para te auxiliar nos atendimentos</strong>. Configure fluxos complexos sem código. Respostas automáticas em linguagem natural.</p>
+                </div>
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-chart-bar"></i>
+                    <h3>Relatórios e Dashboards</h3>
+                    <p>Métricas de desempenho em tempo real: tempo médio de resposta (SLA), volume de atendimentos e produtividade por atendente/setor.</p>
+                </div>
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-tags"></i>
+                    <h3>Gestão de Contatos (CRM Básico)</h3>
+                    <p>Classifique conversas e contatos com Tags. Use Motivos de Finalização para gerar relatórios precisos de vendas e desistências.</p>
+                </div>
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-paper-plane"></i>
+                    <h3>Campanhas em Massa</h3>
+                    <p>Envie promoções e notificações segmentadas. Agende o envio de mensagens e templates para reabertura de conversas fora da janela de 24h.</p>
+                </div>
+                
+                <div class="recurso-item">
+                    <i class="recurso-icon fas fa-handshake"></i>
+                    <h3>Atendimento Organizado por Kanban</h3>
+                    <p>Visualize o fluxo de atendimento como um funil. Transfira conversas entre atendentes ou setores em 1 clique.</p>
+                </div>
+                
             </div>
         </div>
-        <span class="footer-shape"></span>
-    </footer>
+    </section>
 
-    <!-- Scripts -->
-    <script src="assets/js/plugin/jquery-3.5.0.min.js"></script>
-    <script src="assets/js/plugin/popper.min.js"></script>
-    <script src="assets/js/plugin/bootstrap.min.js"></script>
-    <script src="assets/js/plugin/TweenMax.min.js"></script>
-    <script src="assets/js/plugin/ScrollMagic.js"></script>
-    <script src="assets/js/plugin/animation.gsap.js"></script>
-    <script src="assets/js/plugin/debug.addIndicators.min.js"></script>
-    <script src="assets/js/plugin/wow.min.js"></script>
-    <script src="assets/js/plugin/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugin/jquery.fancybox.min.js"></script>
-    <script src="assets/js/plugin/slick.min.js"></script>
-    <script src="assets/js/plugin/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugin/jquery.waypoints.min.js"></script>
-    <script src="assets/js/plugin/jquery.counterup.min.js"></script>
-    <script src="assets/js/plugin/jquery.parallax-scroll.js"></script>
-    <script src="assets/js/plugin/jquery.paroller.js"></script>
-    <script src="assets/js/script.js"></script>
+    <section id="ia-vendas">
+        <div class="container ia-vendas-content">
+            <div class="ia-vendas-image">
+                <img src="./assets/images/atendentes.png" alt="IA e Automação de Vendas">
+            </div>
+            <div class="ia-vendas-text">
+                <h2>O Poder dos Agentes de IA nas Suas Vendas.</h2>
+                <p>Libere sua equipe para fechar negócios complexos. Deixe a IA cuidar do básico:</p>
+                <ul>
+                    <li>Qualificação de leads (fazendo perguntas essenciais).</li>
+                    <li>Respostas automáticas para 80% das perguntas frequentes.</li>
+                    <li>Atendimento e vendas disponíveis 24 horas por dia.</li>
+                    <li>Redução drástica no Tempo Médio de Resposta (SLA).</li>
+                    <li>Maior satisfação do cliente, sem tempo de espera.</li>
+                </ul>
+                <a href="#planos" class="cta-button">Quero Reduzir Meus Custos com IA!</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="planos">
+        <div class="container">
+            <h2 class="section-title">Escolha o Plano Ideal para a Sua Escala</h2>
+            <p class="section-subtitle">Planos flexíveis que crescem junto com o seu negócio</p>
+            
+            <div id="planos-loading" style="text-align: center; padding: 60px 0;">
+                <div style="display: inline-block; width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid var(--cor-principal); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 20px; color: #666;">Carregando planos...</p>
+            </div>
+            
+            <div class="section-planos-grid" id="planos-container" style="display: none;"></div>
+            
+            <div id="planos-error" style="display: none; text-align: center; padding: 60px 0; color: #e74c3c;">
+                <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                <p>Erro ao carregar os planos. Por favor, tente novamente mais tarde.</p>
+            </div>
+            
+            <p style="margin-top: 50px; font-size: 16px; color: #666; text-align: center;">
+                *Observação: Conversas adicionais sujeitas a cobrança conforme consumo. Consulte-nos para mais detalhes.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="logo">LumiTalk</h4>
+                    <p>A plataforma que potencializa o seu WhatsApp, garantindo atendimento de alta qualidade e vendas escaláveis.</p>
+                    <p style="margin-top: 20px; font-size: 13px;">LUMICODE SOLUTIONS LTDA - ME</p>
+                    <p style="font-size: 13px;">CNPJ: 23.756.362/0001-02</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <a href="#recursos">Recursos</a>
+                    <a href="#ia-vendas">IA & Vendas</a>
+                    <a href="#planos">Planos</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Fale Conosco</h4>
+                    <p>Email: <a href="mailto:contato@lumitalk.com.br" style="display: inline;">contato@lumitalk.com.br</a></p>
+                    <p>Telefone: <a href="tel:+5511951613341" style="display: inline;">(11) 95161-3341</a></p>
+                    <p>Endereço: Rua James Ensor, 119</p>
+                    <p>Parque Regina - São Paulo, SP</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk."><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 LumiCode - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+    
+    <a href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       title="Fale Conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Carrega os planos da API
+        async function carregarPlanos() {
+            const loadingEl = document.getElementById('planos-loading');
+            const containerEl = document.getElementById('planos-container');
+            const errorEl = document.getElementById('planos-error');
+            
+            try {
+                const response = await fetch('https://omni-auth-0-0-0-1.onrender.com/plan/list');
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar planos');
+                }
+                
+                const planos = await response.json();
+                
+                // Oculta o loading
+                loadingEl.style.display = 'none';
+                
+                // Filtra apenas planos ativos
+                const planosAtivos = planos.filter(plano => plano.actived);
+                
+                // Renderiza os planos
+                containerEl.innerHTML = planosAtivos.map((plano, index) => {
+                    // Determina se é o plano em destaque (LIGHT - id 2)
+                    const isDestaque = plano.id === 2;
+                    
+                    // Parse da descrição
+                    const descricaoLinhas = plano.description.split('\n').filter(linha => linha.trim());
+                    
+                    // Formata o preço
+                    const precoFormatado = plano.valor.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    
+                    const precoDeFormatado = plano.valorDe ? plano.valorDe.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }) : null;
+                    
+                    const conversasFormatadas = plano.conversationMax.toLocaleString('pt-BR');
+                    
+                    return `
+                        <div class="plano-card ${isDestaque ? 'destaque' : ''}">
+                            ${isDestaque ? '<div class="tag-destaque">MAIS POPULAR</div>' : ''}
+                            <h3>${plano.name}</h3>
+                            ${precoDeFormatado ? `<p class="preco-antigo">De <span style="text-decoration: line-through;">R$ ${precoDeFormatado}</span></p>` : ''}
+                            <p class="preco">R$ ${precoFormatado}<small>/mês</small></p>
+                            <span class="base-preco">por conta</span>
+                            <p>${descricaoLinhas[0] || ''}</p>
+                            <ul>
+                                <li>${plano.users} usuários inclusos</li>
+                                <li>Limite de até ${plano.maxUsers} usuários</li>
+                                <li>${plano.maxInstance} número${plano.maxInstance > 1 ? 's' : ''} WhatsApp</li>
+                                <li>${conversasFormatadas} conversas/mês</li>
+                                ${descricaoLinhas.slice(1).map(linha => 
+                                    linha.trim() ? `<li>${linha.replace(/^[-\s]+/, '')}</li>` : ''
+                                ).join('')}
+                            </ul>
+                            <div class="detalhes-adicionais">
+                                <p>Usuário extra: R$ ${plano.additionalUser.toFixed(2)}/mês</p>
+                                <p>Validade: ${plano.expiration} dias</p>
+                            </div>
+                            <a href="https://app.lumitalk.com.br/" class="cta-button">${plano.name === 'ENTERPRISE' ? 'Falar com Consultor' : 'Teste Gratis'}</a>
+                        </div>
+                    `;
+                }).join('');
+                
+                // Exibe o container
+                containerEl.style.display = 'grid';
+                
+            } catch (error) {
+                console.error('Erro ao carregar planos:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+            }
+        }
+        
+        // Carrega os planos quando a página carregar
+        document.addEventListener('DOMContentLoaded', carregarPlanos);
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Fecha o menu mobile após clicar
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+        
+        // Menu toggle mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Adiciona classe ao scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+    </script>
 
 </body>
-
 </html>
