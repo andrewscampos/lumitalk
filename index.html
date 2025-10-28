@@ -965,7 +965,7 @@
             info.publicIp = await getPublicIp(); // pode ser null
             info.visitedAt = new Date().toISOString();
 
-            await fetch('https://manager-campaign-0-0-0-1.onrender.com/api/visit-log', {
+            await fetch('https://anager-campaign-0-0-0-1.onrender.com/api/visit-log', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(info)
