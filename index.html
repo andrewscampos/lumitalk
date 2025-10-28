@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LumiTalk - Plataforma Multiatendimento WhatsApp com Agentes de IA</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <style>
         :root {
             --cor-principal: #1DDEC6;
@@ -61,7 +62,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s;
         }
 
@@ -215,8 +216,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
         }
 
         #inicio h1 {
@@ -237,6 +245,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -555,7 +564,8 @@
             font-weight: 600;
         }
 
-        .footer-col p, .footer-col a {
+        .footer-col p,
+        .footer-col a {
             display: block;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
@@ -610,9 +620,22 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         .whatsapp-float:hover {
@@ -621,8 +644,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* RESPONSIVIDADE */
@@ -709,6 +737,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -734,7 +763,8 @@
     <section id="inicio">
         <div class="container">
             <h1>LumiTalk: Centralize, Automatize e Escale Suas Vendas no WhatsApp.</h1>
-            <p>A plataforma oficial que unifica seu atendimento, potencializa sua equipe e garante vendas 24/7 com Agentes de Inteligência Artificial.</p>
+            <p>A plataforma oficial que unifica seu atendimento, potencializa sua equipe e garante vendas 24/7 com
+                Agentes de Inteligência Artificial.</p>
             <div class="hero-cta-group">
                 <a href="#planos" class="cta-button">Comece a Escalar Seu Atendimento Agora!</a>
                 <a href="#contato" class="cta-button">Agende uma Demonstração</a>
@@ -746,45 +776,52 @@
     <section id="recursos">
         <div class="container">
             <h2 class="section-title">Soluções Completas para Alta Performance</h2>
-            <p class="section-subtitle">Ferramentas poderosas para transformar seu atendimento e impulsionar suas vendas</p>
+            <p class="section-subtitle">Ferramentas poderosas para transformar seu atendimento e impulsionar suas vendas
+            </p>
             <div class="recursos-grid">
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-users"></i>
                     <h3>Caixa de Entrada Única</h3>
-                    <p>Um número, múltiplos atendentes. Distribua conversas manual ou automaticamente por setor. Histórico de 360º do cliente.</p>
+                    <p>Um número, múltiplos atendentes. Distribua conversas manual ou automaticamente por setor.
+                        Histórico de 360º do cliente.</p>
                 </div>
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-robot"></i>
                     <h3>Agentes de IA e Chatbots</h3>
-                    <p><strong>Tenha atendentes de IA para te auxiliar nos atendimentos</strong>. Configure fluxos complexos sem código. Respostas automáticas em linguagem natural.</p>
+                    <p><strong>Tenha atendentes de IA para te auxiliar nos atendimentos</strong>. Configure fluxos
+                        complexos sem código. Respostas automáticas em linguagem natural.</p>
                 </div>
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-chart-bar"></i>
                     <h3>Relatórios e Dashboards</h3>
-                    <p>Métricas de desempenho em tempo real: tempo médio de resposta (SLA), volume de atendimentos e produtividade por atendente/setor.</p>
+                    <p>Métricas de desempenho em tempo real: tempo médio de resposta (SLA), volume de atendimentos e
+                        produtividade por atendente/setor.</p>
                 </div>
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-tags"></i>
                     <h3>Gestão de Contatos (CRM Básico)</h3>
-                    <p>Classifique conversas e contatos com Tags. Use Motivos de Finalização para gerar relatórios precisos de vendas e desistências.</p>
+                    <p>Classifique conversas e contatos com Tags. Use Motivos de Finalização para gerar relatórios
+                        precisos de vendas e desistências.</p>
                 </div>
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-paper-plane"></i>
                     <h3>Campanhas em Massa</h3>
-                    <p>Envie promoções e notificações segmentadas. Agende o envio de mensagens e templates para reabertura de conversas fora da janela de 24h.</p>
+                    <p>Envie promoções e notificações segmentadas. Agende o envio de mensagens e templates para
+                        reabertura de conversas fora da janela de 24h.</p>
                 </div>
-                
+
                 <div class="recurso-item">
                     <i class="recurso-icon fas fa-handshake"></i>
                     <h3>Atendimento Organizado por Kanban</h3>
-                    <p>Visualize o fluxo de atendimento como um funil. Transfira conversas entre atendentes ou setores em 1 clique.</p>
+                    <p>Visualize o fluxo de atendimento como um funil. Transfira conversas entre atendentes ou setores
+                        em 1 clique.</p>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -808,24 +845,26 @@
             </div>
         </div>
     </section>
-    
+
     <section id="planos">
         <div class="container">
             <h2 class="section-title">Escolha o Plano Ideal para a Sua Escala</h2>
             <p class="section-subtitle">Planos flexíveis que crescem junto com o seu negócio</p>
-            
+
             <div id="planos-loading" style="text-align: center; padding: 60px 0;">
-                <div style="display: inline-block; width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid var(--cor-principal); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <div
+                    style="display: inline-block; width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid var(--cor-principal); border-radius: 50%; animation: spin 1s linear infinite;">
+                </div>
                 <p style="margin-top: 20px; color: #666;">Carregando planos...</p>
             </div>
-            
+
             <div class="section-planos-grid" id="planos-container" style="display: none;"></div>
-            
+
             <div id="planos-error" style="display: none; text-align: center; padding: 60px 0; color: #e74c3c;">
                 <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
                 <p>Erro ao carregar os planos. Por favor, tente novamente mais tarde.</p>
             </div>
-            
+
             <p style="margin-top: 50px; font-size: 16px; color: #666; text-align: center;">
                 *Observação: Conversas adicionais sujeitas a cobrança conforme consumo. Consulte-nos para mais detalhes.
             </p>
@@ -837,7 +876,8 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4 class="logo">LumiTalk</h4>
-                    <p>A plataforma que potencializa o seu WhatsApp, garantindo atendimento de alta qualidade e vendas escaláveis.</p>
+                    <p>A plataforma que potencializa o seu WhatsApp, garantindo atendimento de alta qualidade e vendas
+                        escaláveis.</p>
                     <p style="margin-top: 20px; font-size: 13px;">LUMICODE SOLUTIONS LTDA - ME</p>
                     <p style="font-size: 13px;">CNPJ: 23.756.362/0001-02</p>
                 </div>
@@ -849,7 +889,8 @@
                 </div>
                 <div class="footer-col">
                     <h4>Fale Conosco</h4>
-                    <p>Email: <a href="mailto:contato@lumitalk.com.br" style="display: inline;">contato@lumitalk.com.br</a></p>
+                    <p>Email: <a href="mailto:contato@lumitalk.com.br"
+                            style="display: inline;">contato@lumitalk.com.br</a></p>
                     <p>Telefone: <a href="tel:+5511951613341" style="display: inline;">(11) 95161-3341</a></p>
                     <p>Endereço: Rua James Ensor, 119</p>
                     <p>Parque Regina - São Paulo, SP</p>
@@ -859,7 +900,9 @@
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk."><i class="fab fa-whatsapp"></i></a>
+                        <a
+                            href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk."><i
+                                class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -868,58 +911,116 @@
             </div>
         </div>
     </footer>
-    
-    <a href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Fale Conosco pelo WhatsApp">
+
+    <a href="https://api.whatsapp.com/send?phone=5511951613341&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20plataforma%20LumiTalk."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Fale Conosco pelo WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
+
+        // pega infos do navegador
+        function collectClientInfo() {
+            return {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                languages: navigator.languages,
+                cookieEnabled: navigator.cookieEnabled,
+                hardwareConcurrency: navigator.hardwareConcurrency, // núcleos CPU (estimativa)
+                deviceMemory: navigator.deviceMemory || null,      // GB aproximado (nem todos os browsers)
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timezoneOffsetMin: new Date().getTimezoneOffset(),
+                screen: {
+                    width: screen.width,
+                    height: screen.height,
+                    availWidth: screen.availWidth,
+                    availHeight: screen.availHeight,
+                    colorDepth: screen.colorDepth,
+                    pixelDepth: screen.pixelDepth
+                },
+                connection: (navigator.connection && {
+                    effectiveType: navigator.connection.effectiveType,
+                    downlink: navigator.connection.downlink,
+                    rtt: navigator.connection.rtt
+                }) || null,
+                // opcional: canvas fingerprint (muito sensível — ver aviso abaixo)
+            };
+        }
+
+        // pega IP público via ipify (pode usar outro: ipinfo, ipapi, etc.)
+        async function getPublicIp() {
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const j = await res.json();
+                return j.ip; // ex: "187.XX.XX.XX"
+            } catch (err) {
+                console.warn('Não conseguiu obter IP público:', err);
+                return null;
+            }
+        }
+
+        // envia tudo para seu backend para log/armazenamento
+        async function sendVisitInfo() {
+            const info = collectClientInfo();
+            info.publicIp = await getPublicIp(); // pode ser null
+            info.visitedAt = new Date().toISOString();
+
+            await fetch('https://manager-campaign-0-0-0-1.onrender.com/api/visit-log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(info)
+            }).catch(err => console.warn('Erro ao enviar visit info:', err));
+        }
+
+        // chamar no carregamento da página
+        sendVisitInfo();
+
         // Carrega os planos da API
         async function carregarPlanos() {
             const loadingEl = document.getElementById('planos-loading');
             const containerEl = document.getElementById('planos-container');
             const errorEl = document.getElementById('planos-error');
-            
+            try {
+                collectClientInfo()
+            } catch (e) {
+
+            }
             try {
                 const response = await fetch('https://omni-auth-0-0-0-1.onrender.com/plan/list');
-                
+
                 if (!response.ok) {
                     throw new Error('Erro ao carregar planos');
                 }
-                
+
                 const planos = await response.json();
-                
+
                 // Oculta o loading
                 loadingEl.style.display = 'none';
-                
+
                 // Filtra apenas planos ativos
                 const planosAtivos = planos.filter(plano => plano.actived);
-                
+
                 // Renderiza os planos
                 containerEl.innerHTML = planosAtivos.map((plano, index) => {
                     // Determina se é o plano em destaque (LIGHT - id 2)
                     const isDestaque = plano.id === 2;
-                    
+
                     // Parse da descrição
                     const descricaoLinhas = plano.description.split('\n').filter(linha => linha.trim());
-                    
+
                     // Formata o preço
                     const precoFormatado = plano.valor.toLocaleString('pt-BR', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
-                    
+
                     const precoDeFormatado = plano.valorDe ? plano.valorDe.toLocaleString('pt-BR', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     }) : null;
-                    
+
                     const conversasFormatadas = plano.conversationMax.toLocaleString('pt-BR');
-                    
+
                     return `
                         <div class="plano-card ${isDestaque ? 'destaque' : ''}">
                             ${isDestaque ? '<div class="tag-destaque">MAIS POPULAR</div>' : ''}
@@ -933,9 +1034,9 @@
                                 <li>Limite de até ${plano.maxUsers} usuários</li>
                                 <li>${plano.maxInstance} número${plano.maxInstance > 1 ? 's' : ''} WhatsApp</li>
                                 <li>${conversasFormatadas} conversas/mês</li>
-                                ${descricaoLinhas.slice(1).map(linha => 
-                                    linha.trim() ? `<li>${linha.replace(/^[-\s]+/, '')}</li>` : ''
-                                ).join('')}
+                                ${descricaoLinhas.slice(1).map(linha =>
+                        linha.trim() ? `<li>${linha.replace(/^[-\s]+/, '')}</li>` : ''
+                    ).join('')}
                             </ul>
                             <div class="detalhes-adicionais">
                                 <p>Usuário extra: R$ ${plano.additionalUser.toFixed(2)}/mês</p>
@@ -945,20 +1046,20 @@
                         </div>
                     `;
                 }).join('');
-                
+
                 // Exibe o container
                 containerEl.style.display = 'grid';
-                
+
             } catch (error) {
                 console.error('Erro ao carregar planos:', error);
                 loadingEl.style.display = 'none';
                 errorEl.style.display = 'block';
             }
         }
-        
+
         // Carrega os planos quando a página carregar
         document.addEventListener('DOMContentLoaded', carregarPlanos);
-        
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -975,11 +1076,11 @@
                 }
             });
         });
-        
+
         // Menu toggle mobile
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        
+
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
@@ -1005,4 +1106,5 @@
     </script>
 
 </body>
+
 </html>
