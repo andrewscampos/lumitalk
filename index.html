@@ -965,7 +965,7 @@
             info.publicIp = await getPublicIp(); // pode ser null
             info.visitedAt = new Date().toISOString();
 
-            await fetch('https://anager-campaign-0-0-0-1.onrender.com/api/visit-log', {
+            await fetch('https://api.lumigateway.com.br/manager-campaign/api/visit-log', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(info)
@@ -986,7 +986,7 @@
 
             }
             try {
-                const response = await fetch('https://omni-auth-0-0-0-1.onrender.com/plan/list');
+                const response = await fetch('https://api.lumigateway.com.br/auth/plan/list');
 
                 if (!response.ok) {
                     throw new Error('Erro ao carregar planos');
