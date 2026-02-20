@@ -4,9 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumiTalk - Plataforma Multiatendimento WhatsApp com Agentes de IA</title>
+    <title>LumiTalk - Centralize Atendimentos no WhatsApp e Aumente Vendas com IA | Teste Grátis</title>
+    <meta name="description" content="Plataforma LumiTalk: centralize múltiplos números WhatsApp, automatize atendimentos com IA 24h e aumente até 32% suas vendas. Respostas 80% mais rápidas. Teste grátis.">
+    <meta name="keywords" content="WhatsApp Business, atendimento WhatsApp, automação WhatsApp, IA atendimento, multiatendimento, LumiTalk, vendas WhatsApp, chatbot">
+    <meta name="author" content="LumiTalk - LUMICODE SOLUTIONS LTDA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lumitalk.com.br/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lumitalk.com.br/">
+    <meta property="og:title" content="LumiTalk - Centralize Atendimentos no WhatsApp e Aumente Vendas">
+    <meta property="og:description" content="Gerencie múltiplos números WhatsApp, responda clientes mais rápido e automatize com IA 24h. Respostas até 80% mais rápidas, +32% vendas.">
+    <meta property="og:image" content="https://lumitalk.com.br/assets/images/operacao.png">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LumiTalk - Atendimento WhatsApp com IA">
+    <meta name="twitter:description" content="Centralize atendimentos, automatize com IA e aumente vendas no WhatsApp. Teste grátis.">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Schema.org para SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "LumiTalk",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Plataforma de multiatendimento no WhatsApp com Inteligência Artificial. Centralize múltiplos números, automatize respostas e aumente conversões de vendas.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "LUMICODE SOLUTIONS LTDA",
+            "url": "https://lumitalk.com.br"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Preciso trocar meu número?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Não. Você utiliza seu próprio número existente de WhatsApp. Nenhuma migração necessária."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "É difícil configurar?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Não. A configuração leva poucos minutos. Nosso suporte auxilia no processo e você começa a atender no mesmo dia."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "A IA responde automaticamente?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. A Inteligência Artificial responde dúvidas, qualifica clientes e inicia atendimentos 24 horas por dia."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso usar com minha equipe?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. O LumiTalk permite múltiplos atendentes, distribuição inteligente de conversas e gestão por setores."
+                }
+            }
+        ]
+    }
+    </script>
 
     <style>
         :root {
@@ -280,9 +362,12 @@
             color: var(--cor-texto-claro);
         }
 
-        .hero-image {
+        .hero-image,
+        .hero-video {
             margin-top: 60px;
+            margin-left: 50px;
             max-width: 90%;
+            width: 100%;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
@@ -290,6 +375,12 @@
             position: relative;
             z-index: 1;
             animation: fadeInUp 1s ease 0.6s both;
+            display: block;
+        }
+
+        .hero-video {
+            aspect-ratio: 16/9;
+            object-fit: cover;
         }
 
         /* RECURSOS */
@@ -780,34 +871,40 @@
         <div class="container">
             <h1>Centralize seus atendimentos no WhatsApp e aumente suas vendas com automação inteligente</h1>
             <p>Gerencie múltiplos números, responda clientes rapidamente e automatize atendimentos com Inteligência Artificial disponível 24 horas por dia.</p>
-
+            <video class="hero-video" autoplay controls aria-label="Vídeo de apresentação da plataforma LumiTalk - Centralize atendimentos no WhatsApp com IA">
+                <source src="./assets/manual/lumitalk/apresentacao.mp4" type="video/mp4">
+            </video>
+            <br />
             <div class="hero-cta-group">
                 <a href="https://app.lumitalk.com.br" class="cta-button">Testar Gratuitamente</a>
                 <a href="https://api.whatsapp.com/send?phone=5511951613341" class="cta-button">Falar com Especialista</a>
             </div>
 
-            <img src="./assets/images/operacao.png" alt="Interface da plataforma LumiTalk" class="hero-image">
+            
         </div>
     </section>
 
     <!-- PROVA SOCIAL -->
-    <section id="recursos" style="padding:70px 0;background:#fff;text-align:center">
+    <section id="recursos" style="padding:70px 0;background:#fff;text-align:center" aria-labelledby="recursos-title">
         <div class="container">
-            <h2 class="section-title">Resultados reais para empresas que vendem pelo WhatsApp</h2>
-            <p class="section-subtitle">Organização, velocidade e aumento nas conversões de vendas.</p>
+            <h2 id="recursos-title" class="section-title">Resultados reais para empresas que vendem pelo WhatsApp</h2>
+            <p class="section-subtitle">Organização, velocidade e aumento nas conversões de vendas. Empresas que usam o LumiTalk reduzem o tempo de resposta e convertem mais clientes.</p>
 
             <div class="recursos-grid">
                 <div class="recurso-item">
-                    <i class="fas fa-bolt recurso-icon"></i>
+                    <i class="fas fa-bolt recurso-icon" aria-hidden="true"></i>
                     <h3>Resposta até 80% mais rápida</h3>
+                    <p>Atendimento imediato aos clientes com automação inteligente no WhatsApp</p>
                 </div>
                 <div class="recurso-item">
-                    <i class="fas fa-chart-line recurso-icon"></i>
+                    <i class="fas fa-chart-line recurso-icon" aria-hidden="true"></i>
                     <h3>Aumento médio de 32% nas vendas</h3>
+                    <p>IA qualifica leads e sua equipe foca nos clientes prontos para comprar</p>
                 </div>
                 <div class="recurso-item">
-                    <i class="fas fa-clock recurso-icon"></i>
+                    <i class="fas fa-clock recurso-icon" aria-hidden="true"></i>
                     <h3>Atendimento automático 24 horas</h3>
+                    <p>Nunca perca uma venda: IA responde dúvidas a qualquer hora do dia</p>
                 </div>
             </div>
 
@@ -816,95 +913,122 @@
     </section>
 
     <!-- COMO FUNCIONA -->
-    <section id="como-funciona" style="padding:100px 0;background:#f8f9fa">
+    <section id="como-funciona" style="padding:100px 0;background:#f8f9fa" aria-labelledby="como-funciona-title">
         <div class="container">
-            <h2 class="section-title">Como a plataforma funciona</h2>
+            <h2 id="como-funciona-title" class="section-title">Como a plataforma funciona</h2>
+            <p class="section-subtitle">Em três passos simples você centraliza atendimentos e escalona vendas no WhatsApp</p>
 
             <div class="recursos-grid">
                 <div class="recurso-item">
-                    <i class="fas fa-link recurso-icon"></i>
+                    <i class="fas fa-link recurso-icon" aria-hidden="true"></i>
                     <h3>Conecte seus números</h3>
-                    <p>Integre múltiplos WhatsApps em um único painel.</p>
+                    <p>Integre múltiplos WhatsApps em um único painel. Use seu próprio número, sem trocar.</p>
                 </div>
 
                 <div class="recurso-item">
-                    <i class="fas fa-robot recurso-icon"></i>
+                    <i class="fas fa-robot recurso-icon" aria-hidden="true"></i>
                     <h3>Automatize o atendimento</h3>
-                    <p>A IA responde perguntas, qualifica clientes e organiza conversas.</p>
+                    <p>IA responde perguntas, qualifica clientes e organiza conversas 24h por dia.</p>
                 </div>
 
                 <div class="recurso-item">
-                    <i class="fas fa-handshake recurso-icon"></i>
+                    <i class="fas fa-handshake recurso-icon" aria-hidden="true"></i>
                     <h3>Feche mais vendas</h3>
-                    <p>Sua equipe foca apenas nos clientes prontos para comprar.</p>
+                    <p>Sua equipe foca apenas em clientes qualificados e prontos para comprar.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- BENEFÍCIOS -->
-    <section id="beneficios" style="padding:100px 0;background:#fff">
+    <section id="beneficios" style="padding:100px 0;background:#fff" aria-labelledby="beneficios-title">
         <div class="container">
-            <h2 class="section-title">Benefícios para sua operação</h2>
+            <h2 id="beneficios-title" class="section-title">Benefícios para sua operação</h2>
+            <p class="section-subtitle">Tudo que sua empresa precisa para escalar vendas pelo WhatsApp</p>
 
             <div class="recursos-grid">
                 <div class="recurso-item">
-                    <i class="fas fa-stopwatch recurso-icon"></i>
+                    <i class="fas fa-stopwatch recurso-icon" aria-hidden="true"></i>
                     <h3>Redução do tempo de resposta</h3>
-                    <p>Clientes atendidos imediatamente.</p>
+                    <p>Clientes atendidos imediatamente pela IA, sem fila de espera.</p>
                 </div>
 
                 <div class="recurso-item">
-                    <i class="fas fa-users recurso-icon"></i>
+                    <i class="fas fa-users recurso-icon" aria-hidden="true"></i>
                     <h3>Equipe mais produtiva</h3>
-                    <p>Distribuição automática de atendimentos.</p>
+                    <p>Distribuição automática de conversas entre atendentes e setores.</p>
                 </div>
 
                 <div class="recurso-item">
-                    <i class="fas fa-coins recurso-icon"></i>
+                    <i class="fas fa-coins recurso-icon" aria-hidden="true"></i>
                     <h3>Redução de custos operacionais</h3>
-                    <p>Automação reduz esforço manual.</p>
+                    <p>Automação reduz esforço manual e otimiza recursos da equipe.</p>
                 </div>
 
                 <div class="recurso-item">
-                    <i class="fas fa-chart-bar recurso-icon"></i>
+                    <i class="fas fa-chart-bar recurso-icon" aria-hidden="true"></i>
                     <h3>Métricas e relatórios</h3>
-                    <p>Acompanhe desempenho e conversões.</p>
+                    <p>Dashboards em tempo real: desempenho, conversões e SLA.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PARA QUEM -->
-    <section id="para-quem" style="padding:100px 0;background:#f8f9fa">
+    <section id="para-quem" style="padding:100px 0;background:#f8f9fa" aria-labelledby="para-quem-title">
         <div class="container">
-            <h2 class="section-title">Ideal para empresas que vendem pelo WhatsApp</h2>
+            <h2 id="para-quem-title" class="section-title">Ideal para empresas que vendem pelo WhatsApp</h2>
+            <p class="section-subtitle">Soluções para diversos segmentos que precisam de atendimento rápido e profissional</p>
 
             <div class="recursos-grid">
-                <div class="recurso-item"><i class="fas fa-store recurso-icon"></i><h3>Lojas e e-commerce</h3></div>
-                <div class="recurso-item"><i class="fas fa-stethoscope recurso-icon"></i><h3>Clínicas e consultórios</h3></div>
-                <div class="recurso-item"><i class="fas fa-building recurso-icon"></i><h3>Imobiliárias</h3></div>
-                <div class="recurso-item"><i class="fas fa-utensils recurso-icon"></i><h3>Restaurantes e delivery</h3></div>
-                <div class="recurso-item"><i class="fas fa-tools recurso-icon"></i><h3>Prestadores de serviços</h3></div>
-                <div class="recurso-item"><i class="fas fa-truck recurso-icon"></i><h3>Logística e transportes</h3></div>
+                <div class="recurso-item">
+                    <i class="fas fa-store recurso-icon" aria-hidden="true"></i>
+                    <h3>Lojas e e-commerce</h3>
+                    <p>Atendimento de pedidos, dúvidas e pós-venda em um só lugar</p>
+                </div>
+                <div class="recurso-item">
+                    <i class="fas fa-stethoscope recurso-icon" aria-hidden="true"></i>
+                    <h3>Clínicas e consultórios</h3>
+                    <p>Agendamentos e lembretes automáticos para pacientes</p>
+                </div>
+                <div class="recurso-item">
+                    <i class="fas fa-building recurso-icon" aria-hidden="true"></i>
+                    <h3>Imobiliárias</h3>
+                    <p>Qualificação de leads e atendimento a múltiplos imóveis</p>
+                </div>
+                <div class="recurso-item">
+                    <i class="fas fa-utensils recurso-icon" aria-hidden="true"></i>
+                    <h3>Restaurantes e delivery</h3>
+                    <p>Pedidos, cardápio e entrega pelo WhatsApp</p>
+                </div>
+                <div class="recurso-item">
+                    <i class="fas fa-tools recurso-icon" aria-hidden="true"></i>
+                    <h3>Prestadores de serviços</h3>
+                    <p>Orçamentos, agendamentos e follow-up automático</p>
+                </div>
+                <div class="recurso-item">
+                    <i class="fas fa-truck recurso-icon" aria-hidden="true"></i>
+                    <h3>Logística e transportes</h3>
+                    <p>Rastreamento e notificações para clientes</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section style="padding:90px 0;text-align:center;background:#ffffff">
+    <section style="padding:90px 0;text-align:center;background:#ffffff" aria-labelledby="cta-title">
         <div class="container">
-            <h2 class="section-title">Comece em minutos</h2>
-            <p class="section-subtitle">Sem cartão de crédito. Use seu próprio número de WhatsApp.</p>
+            <h2 id="cta-title" class="section-title">Comece em minutos</h2>
+            <p class="section-subtitle">Sem cartão de crédito. Use seu próprio número de WhatsApp. Configure em poucos passos e comece a vender mais.</p>
             <a href="https://app.lumitalk.com.br" class="cta-button">Criar Conta Gratuita</a>
         </div>
     </section>
 
     <!-- PLANOS -->
-    <section id="planos">
+    <section id="planos" aria-labelledby="planos-title">
         <div class="container">
-            <h2 class="section-title">Planos que acompanham o crescimento do seu negócio</h2>
-            <p class="section-subtitle">Escolha o plano ideal e comece a escalar seu atendimento.</p>
+            <h2 id="planos-title" class="section-title">Planos que acompanham o crescimento do seu negócio</h2>
+            <p class="section-subtitle">Escolha o plano ideal para o tamanho da sua operação e comece a escalar atendimentos no WhatsApp.</p>
 
             <div id="planos-loading" style="text-align:center;padding:60px 0;">
                 <div style="width:50px;height:50px;border:4px solid #eee;border-top:4px solid #1DDEC6;border-radius:50%;animation:spin 1s linear infinite;margin:auto"></div>
@@ -925,28 +1049,29 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" style="padding:100px 0;background:#f8f9fa">
+    <section id="faq" style="padding:100px 0;background:#f8f9fa" aria-labelledby="faq-title">
         <div class="container">
-            <h2 class="section-title">Perguntas frequentes</h2>
+            <h2 id="faq-title" class="section-title">Perguntas frequentes sobre o LumiTalk</h2>
+            <p class="section-subtitle">Tire suas dúvidas antes de começar a usar a plataforma</p>
 
             <div class="recurso-item">
                 <h3>Preciso trocar meu número?</h3>
-                <p>Não. Você pode utilizar seu próprio número existente.</p>
+                <p>Não. Você utiliza seu próprio número existente de WhatsApp. Nenhuma migração necessária.</p>
             </div>
 
             <div class="recurso-item">
                 <h3>É difícil configurar?</h3>
-                <p>Não. A configuração leva poucos minutos e nosso suporte auxilia no processo.</p>
+                <p>Não. A configuração leva poucos minutos. Nosso suporte auxilia no processo e você começa a atender no mesmo dia.</p>
             </div>
 
             <div class="recurso-item">
                 <h3>A IA responde automaticamente?</h3>
-                <p>Sim. Ela pode responder dúvidas, qualificar clientes e iniciar atendimentos.</p>
+                <p>Sim. A Inteligência Artificial responde dúvidas, qualifica clientes e inicia atendimentos 24 horas por dia.</p>
             </div>
 
             <div class="recurso-item">
                 <h3>Posso usar com minha equipe?</h3>
-                <p>Sim. O sistema permite múltiplos atendentes e distribuição inteligente.</p>
+                <p>Sim. O LumiTalk permite múltiplos atendentes, distribuição inteligente de conversas e gestão por setores.</p>
             </div>
         </div>
     </section>
@@ -956,7 +1081,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4 class="logo">LumiTalk</h4>
-                    <p>Centralize atendimentos, automatize conversas e aumente suas vendas com inteligência artificial.</p>
+                    <p>Plataforma de multiatendimento no WhatsApp com IA. Centralize atendimentos, automatize conversas e aumente suas vendas.</p>
                     <p style="font-size:13px;margin-top:15px;">LUMICODE SOLUTIONS LTDA</p>
                     <p style="font-size:13px;">CNPJ: 23.756.362/0001-02</p>
                 </div>
