@@ -60,9 +60,37 @@
     }
     .detected-info.visible { display: block; }
     .detected-info h3 { font-size: 14px; color: #888; margin-bottom: 8px; }
-    .detected-info .device-name { font-size: 20px; font-weight: 600; color: var(--cor-principal); }
-    .detected-info .device-meta { font-size: 13px; color: #666; margin-top: 8px; }
-    .detected-info .device-extra { font-size: 12px; color: #999; margin-top: 12px; line-height: 1.5; }
+    .detected-info .device-name { font-size: 20px; font-weight: 600; color: var(--cor-principal); margin-bottom: 16px; }
+    .detected-info .info-list {
+      text-align: left;
+      list-style: none;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.8;
+    }
+    .detected-info .info-list li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .detected-info .info-list li:last-child { border-bottom: none; }
+    .detected-info .info-list .info-key {
+      font-weight: 600;
+      color: #666;
+      min-width: 120px;
+    }
+    .detected-info .info-list .info-val {
+      word-break: break-all;
+      flex: 1;
+    }
+    .detected-info .info-list .info-val.raw {
+      font-size: 11px;
+      color: #888;
+      max-height: 80px;
+      overflow-y: auto;
+    }
     .detected-info .copy-wrap { margin-top: 20px; }
     .btn-copy {
       display: inline-flex;
@@ -108,8 +136,8 @@
         border-radius: 16px;
       }
       .detected-info .device-name { font-size: 18px; word-break: break-word; }
-      .detected-info .device-meta,
-      .detected-info .device-extra { font-size: 12px; }
+      .detected-info .info-list { font-size: 12px; }
+      .detected-info .info-list .info-key { min-width: 100px; }
       .btn-copy {
         width: 100%;
         justify-content: center;
@@ -132,8 +160,7 @@
     <div class="detected-info" id="detectedInfo">
       <h3>Dispositivo detectado:</h3>
       <p class="device-name" id="deviceName"></p>
-      <p class="device-meta" id="deviceMeta"></p>
-      <p class="device-extra" id="deviceExtra"></p>
+      <ul class="info-list" id="infoList"></ul>
       <div class="copy-wrap">
         <button type="button" class="btn-copy" id="btnCopiar" aria-label="Copiar resultado">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -152,25 +179,41 @@
       const btnCopiar = document.getElementById('btnCopiar');
       const detectedInfo = document.getElementById('detectedInfo');
       const deviceName = document.getElementById('deviceName');
-      const deviceMeta = document.getElementById('deviceMeta');
-      const deviceExtra = document.getElementById('deviceExtra');
+      const infoList = document.getElementById('infoList');
 
-      let lastCopyText = '';
+      let lastDevice = null;
 
       function buildCopyText() {
-        const parts = [
-          deviceName.textContent,
-          deviceMeta.textContent,
-          deviceExtra.textContent
-        ].filter(Boolean);
-        return parts.join('\n');
+        if (!lastDevice) {
+          const parts = [];
+          if (deviceName.textContent) parts.push('Modelo: ' + deviceName.textContent);
+          infoList.querySelectorAll('li').forEach(function(li) {
+            const k = li.querySelector('.info-key');
+            const v = li.querySelector('.info-val');
+            if (k && v) parts.push(k.textContent.trim() + ' ' + v.textContent.trim());
+          });
+          return parts.join('\n');
+        }
+        const d = lastDevice;
+        const lines = [
+          'Modelo: ' + (d.brand ? d.brand + ' ' : '') + d.model,
+          'Código: ' + (d.model_code || '-'),
+          'Sistema: ' + (d.os || '-'),
+          'Confiança: ' + Math.round((d.confidence || 0) * 100) + '%',
+          'Tela: ' + (d.screen ? d.screen.width + ' × ' + d.screen.height + ' (ratio ' + (d.screen.pixelRatio || d.screen.ratio) + 'x)' : '-'),
+          'GPU: ' + (d.gpu || '-'),
+          'RAM: ' + (d.memory !== undefined && d.memory !== 'unknown' ? d.memory + ' GB' : '-'),
+          'Núcleos: ' + (d.cores !== undefined && d.cores !== 'unknown' ? d.cores : '-'),
+          'User-Agent: ' + (d.raw || '')
+        ];
+        return lines.join('\n');
       }
 
       btnCopiar.addEventListener('click', function() {
-        lastCopyText = buildCopyText();
-        if (!lastCopyText) return;
+        const text = buildCopyText();
+        if (!text) return;
 
-        navigator.clipboard.writeText(lastCopyText).then(function() {
+        navigator.clipboard.writeText(text).then(function() {
           const label = btnCopiar.querySelector('svg')?.nextSibling;
           const originalText = btnCopiar.textContent.trim();
           btnCopiar.classList.add('copied');
@@ -187,6 +230,28 @@
         });
       });
 
+      function renderInfoList(device) {
+        const screen = device.screen || {};
+        const ratio = screen.pixelRatio != null ? screen.pixelRatio : screen.ratio;
+        const items = [
+          { key: 'Marca', val: device.brand || '-' },
+          { key: 'Modelo', val: device.model || '-' },
+          { key: 'Código (model_code)', val: device.model_code || '-' },
+          { key: 'Sistema (OS)', val: device.os || '-' },
+          { key: 'Confiança', val: Math.round((device.confidence || 0) * 100) + '%' },
+          { key: 'Largura tela', val: screen.width != null ? screen.width + ' px' : '-' },
+          { key: 'Altura tela', val: screen.height != null ? screen.height + ' px' : '-' },
+          { key: 'Pixel ratio', val: ratio != null ? ratio + 'x' : '-' },
+          { key: 'GPU', val: device.gpu || '-' },
+          { key: 'Memória (RAM)', val: device.memory !== undefined && device.memory !== 'unknown' ? device.memory + ' GB' : '-' },
+          { key: 'Núcleos (CPU)', val: device.cores !== undefined && device.cores !== 'unknown' ? device.cores : '-' },
+          { key: 'User-Agent', val: device.raw || '-', raw: true }
+        ];
+        infoList.innerHTML = items.map(function(item) {
+          return '<li><span class="info-key">' + item.key + ':</span><span class="info-val' + (item.raw ? ' raw' : '') + '">' + (item.val || '-') + '</span></li>';
+        }).join('');
+      }
+
       btn.addEventListener('click', async function() {
         btn.disabled = true;
         btn.textContent = 'Detectando...';
@@ -194,21 +259,14 @@
 
         try {
           const device = await DeviceDetector.detect();
+          lastDevice = device;
           deviceName.textContent = (device.brand ? device.brand + ' ' : '') + device.model;
-          deviceMeta.textContent = (device.os ? device.os + ' • ' : '') + 'Confiança: ' + Math.round((device.confidence || 0) * 100) + '%';
-
-          const extra = [];
-          if (device.gpu && device.gpu !== 'unknown') extra.push('GPU: ' + device.gpu);
-          if (device.screen) extra.push(device.screen.width + '×' + device.screen.height + ' @ ' + device.screen.pixelRatio + 'x');
-          if (device.memory !== 'unknown') extra.push(device.memory + ' GB RAM');
-          if (device.cores !== 'unknown') extra.push(device.cores + ' núcleos');
-          deviceExtra.textContent = extra.length ? extra.join(' • ') : '';
-
+          renderInfoList(device);
           detectedInfo.classList.add('visible');
         } catch (e) {
+          lastDevice = null;
           deviceName.textContent = 'Não foi possível detectar.';
-          deviceMeta.textContent = '';
-          deviceExtra.textContent = '';
+          infoList.innerHTML = '<li><span class="info-key">Erro:</span><span class="info-val">' + (e.message || 'Erro desconhecido') + '</span></li>';
           detectedInfo.classList.add('visible');
         }
 
