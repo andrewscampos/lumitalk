@@ -191,9 +191,12 @@
       confidence = 0.6;
     }
 
+    // Se não achou nome amigável, retorna o model_code (código técnico) para o usuário ver
+    const finalModel = model || model_code || 'Modelo não detectado';
+
     return {
       brand: brand || null,
-      model: model || 'Modelo não detectado',
+      model: finalModel,
       model_code: model_code || model,
       os,
       confidence,
