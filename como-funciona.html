@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Como Funciona - Capas Personalizadas | Detecte seu celular</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="device-detector/device-detector.css">
   <style>
     :root {
       --cor-principal: #1DDEC6;
@@ -51,17 +50,18 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 24px rgba(29, 222, 198, 0.45);
     }
-    .selected-info {
+    .detected-info {
       margin-top: 32px;
-      padding: 20px;
+      padding: 24px;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       display: none;
     }
-    .selected-info.visible { display: block; }
-    .selected-info h3 { font-size: 14px; color: #888; margin-bottom: 8px; }
-    .selected-info p { font-size: 20px; font-weight: 600; color: var(--cor-principal); }
+    .detected-info.visible { display: block; }
+    .detected-info h3 { font-size: 14px; color: #888; margin-bottom: 8px; }
+    .detected-info .device-name { font-size: 20px; font-weight: 600; color: var(--cor-principal); }
+    .detected-info .device-meta { font-size: 13px; color: #666; margin-top: 8px; }
   </style>
 </head>
 
@@ -74,32 +74,36 @@
       Detectar meu celular
     </button>
 
-    <div class="selected-info" id="selectedInfo">
-      <h3>Modelo selecionado:</h3>
-      <p id="selectedDeviceText"></p>
+    <div class="detected-info" id="detectedInfo">
+      <h3>Dispositivo detectado:</h3>
+      <p class="device-name" id="deviceName"></p>
+      <p class="device-meta" id="deviceMeta"></p>
     </div>
   </div>
 
-  <!-- DeviceDetector: carregamento assíncrono -->
-  <script src="device-detector/parser.js"></script>
   <script src="device-detector/detector.js"></script>
-  <script src="device-detector/ui.js"></script>
   <script>
     (function() {
       const btn = document.getElementById('btnDetectar');
-      const selectedInfo = document.getElementById('selectedInfo');
-      const selectedDeviceText = document.getElementById('selectedDeviceText');
-
-      function onDeviceSelected(device) {
-        selectedDeviceText.textContent = device.brand + ' ' + device.model;
-        selectedInfo.classList.add('visible');
-      }
+      const detectedInfo = document.getElementById('detectedInfo');
+      const deviceName = document.getElementById('deviceName');
+      const deviceMeta = document.getElementById('deviceMeta');
 
       btn.addEventListener('click', async function() {
         btn.disabled = true;
         btn.textContent = 'Detectando...';
+        detectedInfo.classList.remove('visible');
 
-        await DeviceDetectorUI.init(document.body, onDeviceSelected);
+        try {
+          const device = await DeviceDetector.detect();
+          deviceName.textContent = (device.brand ? device.brand + ' ' : '') + device.model;
+          deviceMeta.textContent = (device.os ? device.os + ' • ' : '') + 'Confiança: ' + Math.round((device.confidence || 0) * 100) + '%';
+          detectedInfo.classList.add('visible');
+        } catch (e) {
+          deviceName.textContent = 'Não foi possível detectar.';
+          deviceMeta.textContent = '';
+          detectedInfo.classList.add('visible');
+        }
 
         btn.disabled = false;
         btn.textContent = 'Detectar meu celular';
