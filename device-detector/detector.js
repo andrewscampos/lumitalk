@@ -24,31 +24,31 @@
   }
 
   /**
-   * Extrai modelo Android do User-Agent.
-   * Samsung: "Android 13; SM-G991B)"
-   * Xiaomi/Redmi: "Android 12; 23077RABDC Build/..." ou "Android 11; Redmi 10 Build/..."
+   * Extrai modelo Android do User-Agent SEM NENHUM TRATAMENTO (original puro).
+   * model_code na resposta deve ser exatamente esse valor.
    */
-  function getAndroidModel(ua) {
+  function getAndroidModelRaw(ua) {
     const str = (ua || navigator.userAgent || '');
 
-    // Padrão principal: Android X; MODEL) ou MODEL Build/
+    // Padrão principal: captura exata entre "Android X; " e ")" – sem trim, sem replace
     let match = str.match(/Android[^;]*;\s*([^)]+)\)/);
-    if (match) {
-      let model = match[1].trim();
-      // Remove sufixo " Build/..." (comum em Xiaomi, Motorola, etc.)
-      model = model.replace(/\s+Build\/.*$/i, '').trim();
-      if (model.length > 0) return model;
-    }
+    if (match) return match[1]; // original, pode ter " Build/..." no fim
 
-    // Fallback Xiaomi/Redmi: "Xiaomi/Redmi; MODEL_CODE; device_name" (alguns apps)
+    // Fallback Xiaomi/Redmi: "Xiaomi/Redmi; MODEL_CODE; ..."
     match = str.match(/Xiaomi\/Redmi[^;]*;\s*([^;]+)/i);
-    if (match) return match[1].trim();
+    if (match) return match[1];
 
-    // Fallback: qualquer "Redmi X", "Mi X", "POCO X" no UA
+    // Fallback: "Redmi X", "Mi X", "POCO X" até Build/ ou )
     match = str.match(/(?:Redmi|Mi|POCO)\s+[A-Za-z0-9\s]+?(?=\s+Build\/|\s*\)|$)/i);
-    if (match) return match[0].trim();
+    if (match) return match[0];
 
     return null;
+  }
+
+  /** Normaliza só para busca no banco (trim + remove Build/). */
+  function normalizeForLookup(raw) {
+    if (!raw) return '';
+    return (raw + '').replace(/\s+Build\/.*$/i, '').trim();
   }
 
   /**
@@ -136,7 +136,7 @@
         cores: navigator.hardwareConcurrency != null ? navigator.hardwareConcurrency : 'unknown',
       },
       gpu: getGPU(),
-      androidModel: getAndroidModel(ua),
+      androidModelRaw: getAndroidModelRaw(ua),
     };
   }
 
@@ -181,15 +181,16 @@
     let os = 'unknown';
     let confidence = 0.5;
 
-    // Chrome no Android: userAgentData.getHighEntropyValues("model") às vezes traz o código (ex: Xiaomi)
+    // Chrome no Android: userAgentData.getHighEntropyValues("model") = original do navegador (sem tratamento)
     if (ua.includes('Android') && navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
       try {
         const he = await navigator.userAgentData.getHighEntropyValues(['model', 'platform']);
-        if (he.model && he.model.trim()) {
-          model_code = he.model.trim();
+        if (he.model != null && he.model !== '') {
+          model_code = he.model; // original, sem trim
+          const normalized = normalizeForLookup(model_code);
           model = model_code;
-          brand = getBrandFromModel(model_code, ua);
-          const friendly = getFriendlyName(model_code, db);
+          brand = getBrandFromModel(normalized, ua);
+          const friendly = getFriendlyName(normalized, db);
           if (friendly) {
             model = friendly;
             confidence = 0.9;
@@ -200,8 +201,8 @@
 
           return {
             brand: brand || null,
-            model: model || model_code || 'Modelo não detectado',
-            model_code: model_code || model,
+            model: model || 'Modelo não detectado',
+            model_code: model_code,
             os,
             confidence,
             screen: info.screen,
@@ -214,37 +215,36 @@
       } catch (e) {}
     }
 
-    // --- Android: modelo extraído do UA (Samsung, Xiaomi, etc.) ---
+    // --- Android: model_code = valor original do UA (sem tratamento) ---
     if (ua.includes('Android')) {
       os = 'Android';
-      model_code = info.androidModel || null;
+      model_code = info.androidModelRaw || null;
       model = model_code;
-      brand = getBrandFromModel(model_code, ua);
+      const normalized = normalizeForLookup(model_code);
+      brand = getBrandFromModel(normalized, ua);
 
-      // Xiaomi: se UA tem marca mas não extraiu modelo, tenta pelo menos mostrar a marca
       if (!model_code && (ua.includes('Xiaomi') || ua.includes('Redmi') || ua.includes(' POCO ') || ua.match(/\sMi\s/))) {
         brand = 'Xiaomi';
-        model_code = 'Xiaomi';
         model = 'Xiaomi (modelo não identificado no navegador)';
         confidence = 0.4;
       } else if (model_code) {
-        const friendly = getFriendlyName(model_code, db);
+        const friendly = getFriendlyName(normalized, db);
         if (friendly) {
           model = friendly;
           confidence = 0.9;
         } else {
           confidence = 0.75;
-          if (!brand) brand = getBrandFromModel(model_code, ua);
+          if (!brand) brand = getBrandFromModel(normalized, ua);
         }
       }
     }
 
-    // --- iPhone / iPad: estimativa por tela ---
+    // --- iPhone / iPad: Apple não envia model_code no UA, fica vazio ---
     if (ua.includes('iPhone')) {
       os = 'iOS';
       brand = 'Apple';
       model = getiPhoneModel();
-      model_code = 'iPhone';
+      model_code = null;
       confidence = model.indexOf('não identificado') >= 0 ? 0.5 : 0.8;
     }
 
@@ -252,17 +252,16 @@
       os = 'iOS';
       brand = 'Apple';
       model = 'iPad';
-      model_code = 'iPad';
+      model_code = null;
       confidence = 0.6;
     }
 
-    // Se não achou nome amigável, retorna o model_code (código técnico) para o usuário ver
-    const finalModel = model || model_code || 'Modelo não detectado';
+    const finalModel = model || 'Modelo não detectado';
 
     return {
       brand: brand || null,
       model: finalModel,
-      model_code: model_code || model,
+      model_code: model_code,
       os,
       confidence,
       screen: info.screen,
@@ -278,7 +277,7 @@
     loadModelsDb,
     getDeviceInfo,
     getGPU,
-    getAndroidModel,
+    getAndroidModelRaw,
     getiPhoneModel,
   };
 
