@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Como Funciona - Capas Personalizadas | Detecte seu celular</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="device-detector/device-detector.css">
+  <style>
+    :root {
+      --cor-principal: #1DDEC6;
+      --cor-secundaria: #0a1828;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      color: var(--cor-secundaria);
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+    .cta-detect {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cor-principal), #17b3a0);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(29, 222, 198, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-detect:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(29, 222, 198, 0.45);
+    }
+    .selected-info {
+      margin-top: 32px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: none;
+    }
+    .selected-info.visible { display: block; }
+    .selected-info h3 { font-size: 14px; color: #888; margin-bottom: 8px; }
+    .selected-info p { font-size: 20px; font-weight: 600; color: var(--cor-principal); }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1>Encontre a capa ideal para seu celular</h1>
+    <p class="subtitle">Detectamos automaticamente o modelo do seu aparelho e sugerimos as capas compatíveis.</p>
+
+    <button type="button" class="cta-detect" id="btnDetectar">
+      Detectar meu celular
+    </button>
+
+    <div class="selected-info" id="selectedInfo">
+      <h3>Modelo selecionado:</h3>
+      <p id="selectedDeviceText"></p>
+    </div>
+  </div>
+
+  <!-- DeviceDetector: carregamento assíncrono -->
+  <script src="device-detector/parser.js"></script>
+  <script src="device-detector/detector.js"></script>
+  <script src="device-detector/ui.js"></script>
+  <script>
+    (function() {
+      const btn = document.getElementById('btnDetectar');
+      const selectedInfo = document.getElementById('selectedInfo');
+      const selectedDeviceText = document.getElementById('selectedDeviceText');
+
+      function onDeviceSelected(device) {
+        selectedDeviceText.textContent = device.brand + ' ' + device.model;
+        selectedInfo.classList.add('visible');
+      }
+
+      btn.addEventListener('click', async function() {
+        btn.disabled = true;
+        btn.textContent = 'Detectando...';
+
+        await DeviceDetectorUI.init(document.body, onDeviceSelected);
+
+        btn.disabled = false;
+        btn.textContent = 'Detectar meu celular';
+      });
+    })();
+  </script>
+</body>
+
+</html>
