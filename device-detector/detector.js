@@ -1,6 +1,6 @@
 /**
- * DeviceDetector - Main Library
- * Detecta modelo de smartphone via userAgentData (Chrome) + userAgent fallback.
+ * DeviceDetector - Detecção por UserAgent + GPU + resolução + pixel ratio
+ * Maior precisão: combina sinais como em sistemas de antifraude/analytics.
  */
 
 (function (global) {
@@ -8,165 +8,210 @@
 
   let modelsDb = null;
 
+  function loadModelsDb(url) {
+    if (modelsDb) return Promise.resolve(modelsDb);
+    const path = url || 'device-detector/models.json';
+    return fetch(path)
+      .then((res) => res.json())
+      .then((db) => {
+        modelsDb = db;
+        return db;
+      })
+      .catch((e) => {
+        console.warn('[DeviceDetector] models.json não carregado:', e);
+        return {};
+      });
+  }
+
   /**
-   * Carrega o banco de modelos (JSON) de forma assíncrona
+   * Extrai modelo Android do User-Agent (ex: "SM-G991B" em "Android 13; SM-G991B)").
    */
-  async function loadModelsDb(url) {
-    if (modelsDb) return modelsDb;
+  function getAndroidModel(ua) {
+    const match = (ua || navigator.userAgent || '').match(/Android[^;]*;\s*([^)]+)\)/);
+    return match ? match[1].trim() : null;
+  }
+
+  /**
+   * GPU via WebGL – ajuda a distinguir chipsets (ex: Adreno 660 = Snapdragon 888).
+   */
+  function getGPU() {
     try {
-      const res = await fetch(url || 'device-detector/models.json');
-      modelsDb = await res.json();
-      return modelsDb;
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return 'unknown';
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (!debugInfo) return 'unknown';
+      return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || 'unknown';
     } catch (e) {
-      console.warn('[DeviceDetector] models.json não carregado:', e);
-      return {};
+      return 'unknown';
     }
   }
 
   /**
-   * Mapa de modelos comuns (inline) – usado antes ou junto do JSON
+   * Estima iPhone pelo tamanho da tela + pixel ratio (Apple não envia modelo no UA).
    */
-  const modelMap = {
-    'SM-G991B': 'Samsung Galaxy S21',
-    'SM-G996B': 'Samsung Galaxy S21+',
-    'SM-G998B': 'Samsung Galaxy S21 Ultra',
-    'SM-A515F': 'Samsung Galaxy A51',
-    'SM-A525F': 'Samsung Galaxy A52',
-    'SM-A536B': 'Samsung Galaxy A53',
-    'M2007J3SG': 'Xiaomi Mi 10T',
-    '2201117TG': 'Xiaomi Redmi Note 11',
-    'MOTO G(9)': 'Motorola Moto G9',
-    'MOTO G(8)': 'Motorola Moto G8',
-    'Pixel 6': 'Google Pixel 6',
-    'Pixel 7': 'Google Pixel 7',
-  };
+  function getiPhoneModel() {
+    const ratio = window.devicePixelRatio || 1;
+    const width = screen.width;
+    const height = screen.height;
 
-  /**
-   * Detecta dispositivo: userAgentData (Chrome) + userAgent + extração Android + mapa de modelos.
-   * @param {Object} options
-   * @param {string} options.modelsUrl - URL do models.json
-   * @returns {Promise<Object>} { brand, model, model_code, os, confidence, screen, raw }
-   */
-  async function detect(options = {}) {
-    const device = {
-      brand: null,
-      model: null,
-      model_code: null,
-      os: null,
-      raw: null,
-      confidence: 0.5,
-    };
+    const iphoneMap = [
+      { w: 430, h: 932, r: 3, model: 'iPhone 15 Pro Max' },
+      { w: 393, h: 852, r: 3, model: 'iPhone 15 Pro' },
+      { w: 390, h: 844, r: 3, model: 'iPhone 15 / 14' },
+      { w: 428, h: 926, r: 3, model: 'iPhone 14 Plus / 13 Pro Max' },
+      { w: 393, h: 852, r: 3, model: 'iPhone 14 Pro' },
+      { w: 390, h: 844, r: 3, model: 'iPhone 13 / 14' },
+      { w: 428, h: 926, r: 3, model: 'iPhone 13 Pro Max / 14 Plus' },
+      { w: 414, h: 896, r: 3, model: 'iPhone 11 Pro Max / XS Max' },
+      { w: 390, h: 844, r: 3, model: 'iPhone 12 / 13' },
+      { w: 414, h: 896, r: 2, model: 'iPhone 11 / XR' },
+      { w: 375, h: 812, r: 3, model: 'iPhone X / XS' },
+      { w: 414, h: 736, r: 3, model: 'iPhone 8 Plus / 7 Plus' },
+      { w: 375, h: 667, r: 2, model: 'iPhone 8 / 7 / SE (2ª)' },
+      { w: 320, h: 568, r: 2, model: 'iPhone SE (1ª)' },
+    ];
 
-    // =========================
-    // USER AGENT DATA (Chrome moderno)
-    // =========================
-    if (typeof navigator !== 'undefined' && navigator.userAgentData) {
-      try {
-        const data = await navigator.userAgentData.getHighEntropyValues([
-          'model',
-          'platform',
-          'platformVersion',
-        ]);
-
-        if (data.model) {
-          device.model = data.model.trim();
-          device.model_code = device.model;
-          device.confidence = 0.9;
-        }
-
-        if (data.platform) {
-          device.os = data.platform === 'Android' ? 'Android' : data.platform;
-        }
-      } catch (e) {}
-    }
-
-    // =========================
-    // USER AGENT FALLBACK
-    // =========================
-    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-    device.raw = ua;
-
-    if (ua.includes('Android')) {
-      device.os = 'Android';
-    }
-
-    if (ua.includes('iPhone')) {
-      device.brand = 'Apple';
-      if (!device.model) device.model = 'iPhone';
-      device.os = 'iOS';
-    }
-
-    if (ua.includes('iPad')) {
-      device.brand = 'Apple';
-      if (!device.model) device.model = 'iPad';
-      device.os = 'iOS';
-    }
-
-    // =========================
-    // EXTRAIR MODELO ANDROID DO UA
-    // =========================
-    if (device.os === 'Android') {
-      const match = ua.match(/Android[^;]*;\s*([^)]+)\)/);
-      if (match) {
-        const rawModel = match[1].trim();
-        if (!device.model) device.model = rawModel;
-        device.model_code = device.model_code || rawModel;
-
-        if (rawModel.includes('SM-')) device.brand = 'Samsung';
-        else if (rawModel.includes('Mi') || rawModel.includes('Redmi')) device.brand = 'Xiaomi';
-        else if (rawModel.includes('MOTO') || rawModel.includes('moto')) device.brand = 'Motorola';
-        else if (rawModel.includes('Pixel')) device.brand = 'Google';
-        else if (rawModel.includes('CPH')) device.brand = 'Oppo';
-        else if (rawModel.includes('Vivo') || rawModel.match(/V\d{4}/)) device.brand = 'Vivo';
-        else if (rawModel.includes('RMX')) device.brand = 'Realme';
-        else if (!device.brand) device.brand = 'Android';
+    for (const entry of iphoneMap) {
+      const dw = Math.abs(entry.w - width);
+      const dh = Math.abs(entry.h - height);
+      const dr = Math.abs(entry.r - ratio);
+      if (dw <= 5 && dh <= 5 && dr <= 0.5) {
+        return entry.model;
       }
     }
 
-    // =========================
-    // MAPA DE MODELOS (inline + JSON)
-    // =========================
+    if (ratio === 3 && height >= 900) return 'iPhone Pro Max (estimado)';
+    if (ratio === 3 && height >= 800) return 'iPhone Pro / Standard (estimado)';
+    return 'iPhone (modelo não identificado)';
+  }
+
+  /**
+   * Converte código técnico em nome amigável (mapa + JSON).
+   */
+  function getFriendlyName(modelCode, db) {
+    if (!modelCode) return null;
+    const code = (modelCode + '').trim();
+    if (db[code]) return db[code].brand + ' ' + db[code].model;
+    return null;
+  }
+
+  /**
+   * Coleta todas as informações do dispositivo (UA + GPU + tela + hardware).
+   */
+  function getDeviceInfo() {
+    const ua = navigator.userAgent || '';
+
+    return {
+      userAgent: ua,
+      platform: navigator.platform || '',
+      language: navigator.language || '',
+      screen: {
+        width: screen.width,
+        height: screen.height,
+        pixelRatio: window.devicePixelRatio || 1,
+      },
+      hardware: {
+        memory: navigator.deviceMemory != null ? navigator.deviceMemory : 'unknown',
+        cores: navigator.hardwareConcurrency != null ? navigator.hardwareConcurrency : 'unknown',
+      },
+      gpu: getGPU(),
+      androidModel: getAndroidModel(ua),
+    };
+  }
+
+  /**
+   * Detecta marca a partir do modelo bruto (Android).
+   */
+  function getBrandFromModel(rawModel) {
+    if (!rawModel) return null;
+    const m = rawModel.toUpperCase();
+    if (m.includes('SM-')) return 'Samsung';
+    if (m.includes('MI') || m.includes('REDMI') || m.includes('POCO') || /^\d{10,}/.test(rawModel)) return 'Xiaomi';
+    if (m.includes('MOTO') || m.includes('XT')) return 'Motorola';
+    if (m.includes('PIXEL')) return 'Google';
+    if (m.includes('CPH')) return 'Oppo';
+    if (m.includes('VIVO') || /^V\d{4}/.test(rawModel)) return 'Vivo';
+    if (m.includes('RMX')) return 'Realme';
+    if (m.includes('HUAWEI') || /^[A-Z]{3}-[A-Z0-9]+/.test(rawModel)) return 'Huawei';
+    return 'Android';
+  }
+
+  /**
+   * API principal: detecta dispositivo e retorna modelo amigável + dados extras.
+   * @param {Object} options
+   * @param {string} options.modelsUrl - URL do models.json
+   * @returns {Promise<Object>}
+   */
+  async function detect(options = {}) {
     const modelsUrl = options.modelsUrl || 'device-detector/models.json';
     const db = await loadModelsDb(modelsUrl);
 
-    const mergedMap = { ...modelMap };
-    for (const [code, info] of Object.entries(db)) {
-      if (info && info.model) mergedMap[code] = info.brand + ' ' + info.model;
+    const info = getDeviceInfo();
+    const ua = info.userAgent;
+
+    let model = null;
+    let model_code = null;
+    let brand = null;
+    let os = 'unknown';
+    let confidence = 0.5;
+
+    // --- Android: modelo do UA + GPU + tela ---
+    if (ua.includes('Android')) {
+      os = 'Android';
+      model_code = info.androidModel || null;
+      model = model_code;
+
+      if (model_code) {
+        brand = getBrandFromModel(model_code);
+        const friendly = getFriendlyName(model_code, db);
+        if (friendly) {
+          model = friendly;
+          confidence = 0.9;
+        } else {
+          confidence = 0.75;
+        }
+      }
     }
 
-    const rawModelForMap = device.model_code || device.model;
-    if (rawModelForMap && mergedMap[rawModelForMap]) {
-      device.model = mergedMap[rawModelForMap];
-      device.confidence = Math.max(device.confidence, 0.85);
-    } else if (rawModelForMap && db[rawModelForMap]) {
-      device.model = db[rawModelForMap].model;
-      device.brand = device.brand || db[rawModelForMap].brand;
-      device.confidence = Math.max(device.confidence, 0.85);
+    // --- iPhone / iPad: estimativa por tela ---
+    if (ua.includes('iPhone')) {
+      os = 'iOS';
+      brand = 'Apple';
+      model = getiPhoneModel();
+      model_code = 'iPhone';
+      confidence = model.indexOf('não identificado') >= 0 ? 0.5 : 0.8;
     }
 
-    // =========================
-    // INFO DE TELA
-    // =========================
-    device.screen = {
-      width: typeof window !== 'undefined' ? window.screen.width : 0,
-      height: typeof window !== 'undefined' ? window.screen.height : 0,
-      ratio: typeof window !== 'undefined' ? window.devicePixelRatio : 1,
-    };
+    if (ua.includes('iPad')) {
+      os = 'iOS';
+      brand = 'Apple';
+      model = 'iPad';
+      model_code = 'iPad';
+      confidence = 0.6;
+    }
 
     return {
-      brand: device.brand,
-      model: device.model || 'Modelo não detectado',
-      model_code: device.model_code || device.model,
-      os: device.os || 'unknown',
-      confidence: device.confidence,
-      screen: device.screen,
-      raw: device.raw,
+      brand: brand || null,
+      model: model || 'Modelo não detectado',
+      model_code: model_code || model,
+      os,
+      confidence,
+      screen: info.screen,
+      gpu: info.gpu,
+      memory: info.hardware.memory,
+      cores: info.hardware.cores,
+      raw: info.userAgent,
     };
   }
 
   const DeviceDetector = {
     detect,
     loadModelsDb,
+    getDeviceInfo,
+    getGPU,
+    getAndroidModel,
+    getiPhoneModel,
   };
 
   if (typeof module !== 'undefined' && module.exports) {

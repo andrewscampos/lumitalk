@@ -62,6 +62,7 @@
     .detected-info h3 { font-size: 14px; color: #888; margin-bottom: 8px; }
     .detected-info .device-name { font-size: 20px; font-weight: 600; color: var(--cor-principal); }
     .detected-info .device-meta { font-size: 13px; color: #666; margin-top: 8px; }
+    .detected-info .device-extra { font-size: 12px; color: #999; margin-top: 12px; line-height: 1.5; }
   </style>
 </head>
 
@@ -78,6 +79,7 @@
       <h3>Dispositivo detectado:</h3>
       <p class="device-name" id="deviceName"></p>
       <p class="device-meta" id="deviceMeta"></p>
+      <p class="device-extra" id="deviceExtra"></p>
     </div>
   </div>
 
@@ -88,6 +90,7 @@
       const detectedInfo = document.getElementById('detectedInfo');
       const deviceName = document.getElementById('deviceName');
       const deviceMeta = document.getElementById('deviceMeta');
+      const deviceExtra = document.getElementById('deviceExtra');
 
       btn.addEventListener('click', async function() {
         btn.disabled = true;
@@ -98,10 +101,19 @@
           const device = await DeviceDetector.detect();
           deviceName.textContent = (device.brand ? device.brand + ' ' : '') + device.model;
           deviceMeta.textContent = (device.os ? device.os + ' • ' : '') + 'Confiança: ' + Math.round((device.confidence || 0) * 100) + '%';
+
+          const extra = [];
+          if (device.gpu && device.gpu !== 'unknown') extra.push('GPU: ' + device.gpu);
+          if (device.screen) extra.push(device.screen.width + '×' + device.screen.height + ' @ ' + device.screen.pixelRatio + 'x');
+          if (device.memory !== 'unknown') extra.push(device.memory + ' GB RAM');
+          if (device.cores !== 'unknown') extra.push(device.cores + ' núcleos');
+          deviceExtra.textContent = extra.length ? extra.join(' • ') : '';
+
           detectedInfo.classList.add('visible');
         } catch (e) {
           deviceName.textContent = 'Não foi possível detectar.';
           deviceMeta.textContent = '';
+          deviceExtra.textContent = '';
           detectedInfo.classList.add('visible');
         }
 
