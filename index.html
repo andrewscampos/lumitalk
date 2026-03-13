@@ -354,6 +354,87 @@
             animation: fadeInUp 1s ease 0.4s both;
         }
 
+        .signup-form {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: left;
+        }
+
+        .signup-form h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .signup-form p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 14px;
+        }
+
+        .signup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px 16px;
+            margin-bottom: 10px;
+        }
+
+        .signup-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .signup-field label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .signup-field input {
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(0, 0, 0, 0.15);
+            padding: 8px 14px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .signup-field input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .signup-field input:focus {
+            outline: none;
+            border-color: var(--cor-principal);
+            box-shadow: 0 0 0 1px rgba(29, 222, 198, 0.6);
+        }
+
+        .signup-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 16px;
+            margin-top: 8px;
+        }
+
+        .signup-actions .cta-button {
+            padding: 10px 26px;
+            font-size: 15px;
+        }
+
+        .signup-note {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .signup-error {
+            font-size: 12px;
+            color: #ffb3b3;
+            margin-top: 6px;
+        }
+
         .hero-apoio {
             font-size: 16px;
             opacity: 0.85;
@@ -999,21 +1080,59 @@
     <!-- HERO -->
     <section id="inicio">
         <div class="container">
-            <h1>Automatize seu WhatsApp e aumente suas vendas sem contratar mais funcionários</h1>
-            <p>Responda clientes em segundos, atenda 24h por dia e transforme conversas em oportunidades reais de venda.</p>
+            <h1>Atenda 24h no WhatsApp e aumente suas vendas em até 32% — comece grátis em 2 minutos</h1>
+            <p>Centralize conversas, responda clientes em segundos com IA e mantenha sua operação vendendo o tempo todo, sem precisar contratar mais funcionários.</p>
             <p class="hero-apoio">Ideal para empresas que recebem clientes pelo WhatsApp e querem crescer sem aumentar a equipe.</p>
 
             <p class="hero-video-label">Veja em 60 segundos como o LumiTalk automatiza seu WhatsApp e aumenta suas vendas</p>
-            <video class="hero-video" autoplay controls loop playsinline
+            <video class="hero-video" controls playsinline loading="lazy" poster="./assets/images/operacao.png"
                 aria-label="Vídeo de apresentação da plataforma LumiTalk - Centralize atendimentos no WhatsApp com IA">
                 <source src="./assets/manual/lumitalk/apresentacao.mp4" type="video/mp4">
             </video>
             <br />
             <div class="hero-cta-group">
-                <a href="https://app.lumitalk.com.br" class="cta-button">Começar grátis agora</a>
+                <a href="#cadastro-rapido" class="cta-button">Começar grátis agora</a>
                 <a href="#como-funciona" class="cta-button cta-secondary">Ver como funciona em 1 minuto</a>
             </div>
             <p class="hero-proof">Configuração em menos de 5 minutos • Sem cartão de crédito • Use seu próprio número</p>
+
+            <form id="cadastro-rapido" class="signup-form" novalidate>
+                <h3>Crie sua conta gratuita agora</h3>
+                <p>Sem cartão de crédito. Você recebe acesso imediato à plataforma após o cadastro.</p>
+
+                <div class="signup-grid">
+                    <div class="signup-field">
+                        <label for="cadastroEmpresa">Nome da empresa</label>
+                        <input id="cadastroEmpresa" type="text" name="nome" placeholder="Ex: Loja Exemplo" required>
+                    </div>
+                    <div class="signup-field">
+                        <label for="cadastroContato">Seu nome</label>
+                        <input id="cadastroContato" type="text" name="contato" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="signup-field">
+                        <label for="cadastroEmail">E-mail</label>
+                        <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" required>
+                    </div>
+                    <div class="signup-field">
+                        <label for="cadastroCelular">WhatsApp</label>
+                        <input id="cadastroCelular" type="tel" name="celular" placeholder="(11) 99999-9999" required>
+                    </div>
+                    <div class="signup-field">
+                        <label for="cadastroSenha">Senha</label>
+                        <input id="cadastroSenha" type="password" name="senha" placeholder="Mínimo 8 caracteres" required>
+                    </div>
+                    <div class="signup-field">
+                        <label for="cadastroConfirmarSenha">Confirmar senha</label>
+                        <input id="cadastroConfirmarSenha" type="password" name="confirmarSenha" placeholder="Repita a senha" required>
+                    </div>
+                </div>
+
+                <div class="signup-actions">
+                    <button type="submit" class="cta-button" id="cadastroSubmit">Criar conta grátis</button>
+                    <span class="signup-note">Ao continuar, você concorda com o uso da plataforma LumiTalk.</span>
+                </div>
+                <div class="signup-error" id="cadastroErro" style="display:none;"></div>
+            </form>
         </div>
     </section>
 
@@ -1229,7 +1348,21 @@
                 <p style="margin-top:20px;color:#666">Carregando planos...</p>
             </div>
 
-            <div class="section-planos-grid" id="planos-container" style="display:none;"></div>
+            <div class="section-planos-grid" id="planos-container">
+                <!-- Fallback estático para sempre ter um plano visível mesmo se a API falhar -->
+                <div class="plano-card destaque">
+                    <div class="tag-destaque">MAIS POPULAR</div>
+                    <h3>PRO</h3>
+                    <p class="preco">R$ 199,00<small>/mês</small></p>
+                    <span class="base-preco">por conta</span>
+                    <ul>
+                        <li>5 usuários inclusos</li>
+                        <li>Até 3 números WhatsApp</li>
+                        <li>10.000 conversas/mês</li>
+                    </ul>
+                    <a href="https://app.lumitalk.com.br" class="cta-button">Usar meu WhatsApp agora</a>
+                </div>
+            </div>
 
             <div id="planos-error" style="display:none;text-align:center;padding:60px;color:#e74c3c;">
                 <i class="fas fa-exclamation-circle" style="font-size:40px;"></i>
@@ -1496,6 +1629,86 @@
                 header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
             }
         });
+
+        // Cadastro rápido inline (melhor fluxo de conversão)
+        const cadastroForm = document.getElementById('cadastro-rapido');
+        const cadastroSubmit = document.getElementById('cadastroSubmit');
+        const cadastroErro = document.getElementById('cadastroErro');
+
+        if (cadastroForm) {
+            cadastroForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                cadastroErro.style.display = 'none';
+                cadastroErro.textContent = '';
+
+                const empresa = document.getElementById('cadastroEmpresa').value.trim();
+                const contato = document.getElementById('cadastroContato').value.trim();
+                const email = document.getElementById('cadastroEmail').value.trim();
+                const celular = document.getElementById('cadastroCelular').value.trim();
+                const senha = document.getElementById('cadastroSenha').value;
+                const confirmarSenha = document.getElementById('cadastroConfirmarSenha').value;
+
+                if (!empresa || !contato || !email || !celular || !senha || !confirmarSenha) {
+                    cadastroErro.textContent = 'Preencha todos os campos para criar sua conta.';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+
+                if (senha.length < 8) {
+                    cadastroErro.textContent = 'A senha deve ter pelo menos 8 caracteres.';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+
+                if (senha !== confirmarSenha) {
+                    cadastroErro.textContent = 'As senhas não conferem.';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+
+                cadastroSubmit.disabled = true;
+                const originalText = cadastroSubmit.textContent;
+                cadastroSubmit.textContent = 'Criando conta...';
+
+                const payload = {
+                    tipo: 'PJ',
+                    nome: empresa,
+                    documento: '',
+                    email,
+                    contato,
+                    celular,
+                    senha,
+                    confirmarSenha
+                };
+
+                try {
+                    const resp = await fetch('https://api.lumigateway.com.br/auth/company/cadastro', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!resp.ok) {
+                        let msg = 'Não foi possível criar sua conta. Tente novamente em instantes.';
+                        try {
+                            const data = await resp.json();
+                            if (data && (data.mensagem || data.message)) {
+                                msg = data.mensagem || data.message;
+                            }
+                        } catch (_) { }
+                        throw new Error(msg);
+                    }
+
+                    // Sucesso: redireciona direto para o app
+                    window.location.href = 'https://app.lumitalk.com.br';
+                } catch (err) {
+                    cadastroErro.textContent = err.message || 'Erro ao criar conta.';
+                    cadastroErro.style.display = 'block';
+                    cadastroSubmit.disabled = false;
+                    cadastroSubmit.textContent = originalText;
+                }
+            });
+        }
     </script>
 
 </body>
