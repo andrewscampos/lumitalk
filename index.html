@@ -198,6 +198,41 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            padding: 0;
+        }
+
+        /* TEMPORÁRIO: teste manual de conversão Google Ads — remover depois */
+        .dev-conversion-banner {
+            background: #c62828;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px 16px;
+            flex-wrap: wrap;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            text-align: center;
+            line-height: 1.35;
+        }
+
+        .dev-conversion-banner__btn {
+            background: #fff;
+            color: #b71c1c;
+            border: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+
+        .dev-conversion-banner__btn:hover {
+            background: #ffcdd2;
+        }
+
+        header>.container {
             padding: 15px 0;
         }
 
@@ -1000,14 +1035,14 @@
         }
 
         @media (max-width: 768px) {
-            header {
+            header>.container {
                 padding: 10px 0;
             }
 
             .nav-links {
                 position: fixed;
                 left: -100%;
-                top: 64px;
+                top: 112px;
                 flex-direction: column;
                 background-color: rgba(255, 255, 255, 0.98);
                 width: 100%;
@@ -1015,7 +1050,7 @@
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
                 padding: 16px 0;
-                max-height: calc(100vh - 64px);
+                max-height: calc(100vh - 112px);
                 overflow: auto;
             }
 
@@ -1203,6 +1238,10 @@
 <body>
 
     <header>
+        <div class="dev-conversion-banner" role="region" aria-label="Teste temporário de conversão">
+            <span>Teste Google Ads — conversão (temporário, remover)</span>
+            <button type="button" class="dev-conversion-banner__btn" id="btnTestConversion">Disparar conversão</button>
+        </div>
         <div class="container">
             <nav>
                 <a href="#inicio" class="logo">LumiTalk</a>
@@ -1732,6 +1771,23 @@
         }
 
         document.addEventListener('DOMContentLoaded', carregarPlanos);
+
+        // TEMPORÁRIO: botão de teste de conversão Google Ads (remover junto com .dev-conversion-banner)
+        (function () {
+            const btn = document.getElementById('btnTestConversion');
+            if (!btn) return;
+            const label = btn.textContent;
+            btn.addEventListener('click', function () {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', { send_to: 'AW-839629314/0sAwCJHe35AcEIL0rpAD' });
+                    btn.textContent = 'Conversão enviada ✓';
+                    setTimeout(function () { btn.textContent = label; }, 3000);
+                } else {
+                    btn.textContent = 'gtag indisponível';
+                    setTimeout(function () { btn.textContent = label; }, 3000);
+                }
+            });
+        })();
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
