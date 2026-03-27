@@ -1845,8 +1845,23 @@
                         throw new Error(msg);
                     }
 
-                    // Sucesso: redireciona direto para o app
-                    window.location.href = 'https://app.lumitalk.com.br';
+                    // Google Ads — conversão (cadastro concluído); event_callback evita perder o hit no redirect
+                    const appUrl = 'https://app.lumitalk.com.br';
+                    let redirectDone = false;
+                    function redirectToApp() {
+                        if (redirectDone) return;
+                        redirectDone = true;
+                        window.location.href = appUrl;
+                    }
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'conversion', {
+                            send_to: 'AW-839629314/0sAwCJHe35AcEIL0rpAD',
+                            event_callback: redirectToApp
+                        });
+                        setTimeout(redirectToApp, 2000);
+                    } else {
+                        redirectToApp();
+                    }
                 } catch (err) {
                     cadastroErro.textContent = err.message || 'Erro ao criar conta.';
                     cadastroErro.style.display = 'block';
