@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumiTalk | Multiatendimento WhatsApp com IA para Vender Mais</title>
+    <title>LumiTalk | Pare de perder cliente no WhatsApp — IA e multiatendimento</title>
     <meta name="description"
-        content="Plataforma LumiTalk: centralize múltiplos números WhatsApp, automatize atendimentos com IA 24h e aumente até 32% suas vendas. Respostas 80% mais rápidas. Teste grátis.">
+        content="Lead no WhatsApp e resposta lenta? Centralize números, responda em segundos com IA 24h no seu próprio número — sem aumentar equipe. Teste grátis em minutos.">
     <meta name="keywords"
         content="WhatsApp Business, atendimento WhatsApp, automação WhatsApp, IA atendimento, multiatendimento, LumiTalk, vendas WhatsApp, chatbot">
     <meta name="author" content="LumiTalk - LUMICODE SOLUTIONS LTDA">
@@ -26,17 +26,17 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lumitalk.com.br/">
-    <meta property="og:title" content="LumiTalk | Multiatendimento WhatsApp com IA para Vender Mais">
+    <meta property="og:title" content="LumiTalk | Resposta rápida no WhatsApp com IA — pare de perder venda">
     <meta property="og:description"
-        content="Gerencie múltiplos números WhatsApp, responda clientes mais rápido e automatize com IA 24h. Respostas até 80% mais rápidas, +32% vendas.">
+        content="Tráfego e lead no inbox: responda em segundos, 24h, com IA no seu número. Multiatendimento, menos fila, mais conversão. Teste grátis.">
     <meta property="og:image" content="https://lumitalk.com.br/assets/images/operacao.png">
     <meta property="og:locale" content="pt_BR">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LumiTalk - Atendimento WhatsApp com IA">
+    <meta name="twitter:title" content="LumiTalk — WhatsApp: resposta na hora, sem contratar mais gente">
     <meta name="twitter:description"
-        content="Centralize atendimentos, automatize com IA e aumente vendas no WhatsApp. Teste grátis.">
+        content="Menos espera pro cliente, mais conversas fechadas. IA + equipe no mesmo painel. Teste grátis.">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -205,11 +205,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+            min-width: 0;
+        }
+
+        .header-nav-cluster {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px 14px;
+            flex: 1;
+            min-width: 0;
         }
 
         .logo {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
+            flex-shrink: 0;
             background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -221,15 +234,54 @@
             list-style: none;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 2px 4px;
+            margin: 0;
+            padding: 0;
+            min-width: 0;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
             color: var(--cor-texto-escuro);
             text-decoration: none;
-            margin-left: 30px;
+            margin-left: 0;
+            padding: 8px 10px;
+            font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-cta-bar {
+            flex-shrink: 0;
+            padding: 10px 20px !important;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-cta-drawer {
+            display: none;
+            width: 100%;
+            margin: 0;
+            padding: 16px 20px 8px;
+            box-sizing: border-box;
+        }
+
+        .nav-cta-drawer .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            text-align: center;
+            box-sizing: border-box;
         }
 
         .nav-links a::after {
@@ -465,6 +517,198 @@
             font-size: 15px;
             opacity: 0.9;
             letter-spacing: 0.2px;
+        }
+
+        .hero-lead {
+            font-size: 19px;
+            font-weight: 400;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 22px;
+            line-height: 1.55;
+            opacity: 0.95;
+        }
+
+        .hero-micro-list {
+            list-style: none;
+            max-width: 640px;
+            margin: 0 auto 36px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.15s both;
+        }
+
+        .hero-micro-list li {
+            padding: 10px 0 10px 36px;
+            position: relative;
+            font-size: 17px;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        .hero-micro-list li i {
+            position: absolute;
+            left: 0;
+            top: 11px;
+            color: var(--cor-principal);
+            font-size: 18px;
+        }
+
+        .hero-urgency {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7ff5e8;
+            margin-top: 14px;
+            margin-bottom: 0;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .hero-visual-band {
+            max-width: 920px;
+            margin: 32px auto 0;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-video-block {
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .hero-visual-band .hero-video-block .hero-video-label {
+            text-align: center;
+        }
+
+        .hero-visual-band .hero-video {
+            margin-top: 18px;
+        }
+
+        .hero-sound-hint {
+            font-size: 12px !important;
+            opacity: 0.75 !important;
+            margin-top: 8px !important;
+            margin-bottom: 0 !important;
+        }
+
+        .signup-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .signup-progress .signup-dot {
+            width: 36px;
+            height: 4px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .signup-progress .signup-dot.is-active {
+            background: var(--cor-principal);
+        }
+
+        .signup-step {
+            display: none;
+        }
+
+        .signup-step.is-visible {
+            display: block;
+        }
+
+        .signup-back {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 13px;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .signup-back:hover {
+            color: #fff;
+        }
+
+        .signup-app-fallback {
+            margin-top: 12px;
+            font-size: 13px;
+            opacity: 0.88;
+            text-align: center;
+        }
+
+        .signup-app-fallback a {
+            color: var(--cor-principal);
+            font-weight: 600;
+        }
+
+        /* prova visual — antes/depois */
+        .prova-visual-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .prova-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 22px 22px 20px;
+            border: 1px solid #e8ecef;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .prova-card h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .prova-card.bad h3 {
+            color: #c0392b;
+        }
+
+        .prova-card.good h3 {
+            color: var(--cor-accent);
+        }
+
+        .prova-card p {
+            font-size: 16px;
+            color: var(--cor-texto-escuro);
+            margin: 0;
+            line-height: 1.55;
+        }
+
+        .prova-visual-figure {
+            margin: 32px auto 0;
+            max-width: 720px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(29, 222, 198, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .prova-visual-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .prova-visual-figure figcaption {
+            font-size: 14px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            color: #555;
         }
 
         .cta-secondary {
@@ -999,24 +1243,40 @@
             }
         }
 
-        @media (max-width: 768px) {
-            header {
-                padding: 10px 0;
+        /* Menu colapsado antes de estourar (muitos itens + CTA) */
+        @media (max-width: 1100px) {
+            .header-nav-cluster {
+                flex: 0 0 auto;
+                min-width: 0;
+                gap: 10px;
+            }
+
+            .nav-cta-bar {
+                display: none !important;
+            }
+
+            .nav-cta-drawer {
+                display: list-item;
             }
 
             .nav-links {
                 position: fixed;
                 left: -100%;
-                top: 64px;
+                top: 58px;
                 flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
                 background-color: rgba(255, 255, 255, 0.98);
                 width: 100%;
                 text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 16px 0;
-                max-height: calc(100vh - 64px);
-                overflow: auto;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.08);
+                padding: 12px 0 24px;
+                max-height: calc(100vh - 58px);
+                overflow-y: auto;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -1024,15 +1284,21 @@
             }
 
             .nav-links a {
-                margin: 15px 0;
+                display: block;
+                padding: 14px 20px;
+                font-size: 16px;
+                white-space: normal;
             }
 
             .menu-toggle {
                 display: flex;
+                flex-shrink: 0;
             }
+        }
 
-            header nav .cta-button {
-                display: none;
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
             }
 
             #inicio {
@@ -1062,6 +1328,10 @@
 
             .hero-proof {
                 font-size: 13px;
+            }
+
+            .hero-micro-list li {
+                font-size: 15px;
             }
 
             .ia-vendas-text h2 {
@@ -1099,6 +1369,10 @@
             .hero-video {
                 margin-top: 40px;
                 border-radius: 12px;
+            }
+
+            .hero-video-block .hero-video {
+                margin-top: 16px;
             }
 
             .hero-cta-group {
@@ -1206,18 +1480,23 @@
         <div class="container">
             <nav>
                 <a href="#inicio" class="logo">LumiTalk</a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#problemas">Problemas</a></li>
-                    <li><a href="#recursos">Resultados</a></li>
-                    <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#para-quem">Para Quem</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-                <a href="https://app.lumitalk.com.br" class="cta-button">Teste Gratuito</a>
-                <div class="menu-toggle" id="menuToggle">
-                    <span></span><span></span><span></span>
+                <div class="header-nav-cluster">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#problemas">Problemas</a></li>
+                        <li><a href="#prova-visual">Prova</a></li>
+                        <li><a href="#recursos">Resultados</a></li>
+                        <li><a href="#como-funciona">Como funciona</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#para-quem">Para quem</a></li>
+                        <li><a href="#planos">Planos</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li class="nav-cta-drawer"><a href="#cadastro-rapido" class="cta-button">Testar agora</a></li>
+                    </ul>
+                    <a href="#cadastro-rapido" class="cta-button nav-cta-bar">Testar agora</a>
+                    <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu"
+                        aria-expanded="false" aria-controls="navLinks">
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -1226,72 +1505,118 @@
     <!-- HERO -->
     <section id="inicio">
         <div class="container">
-            <h1>Atenda 24h no WhatsApp e aumente suas vendas em até 32% — comece grátis em 2 minutos</h1>
-            <p>Centralize conversas, responda clientes em segundos com IA e mantenha sua operação vendendo o tempo todo, sem precisar contratar mais funcionários.</p>
-            <p class="hero-apoio">Ideal para empresas que recebem clientes pelo WhatsApp e querem crescer sem aumentar a equipe.</p>
+            <h1>Pare de perder cliente no WhatsApp em menos de 24h — sem contratar ninguém</h1>
+            <p class="hero-lead">Se o lead cai no inbox e você demora a responder, ele compra do concorrente. O LumiTalk coloca IA + sua equipe no mesmo painel: primeira resposta em segundos, 24 horas, no <strong>seu</strong> número.</p>
+            <ul class="hero-micro-list" aria-label="Situações que o LumiTalk resolve">
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Você recebe lead e não responde rápido o bastante</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fora do horário, a caixa enche e ninguém vê a tempo</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Vários números ou atendentes viram bagunça e mensagem perdida</li>
+            </ul>
 
-            <p class="hero-video-label">Veja em 60 segundos como o LumiTalk automatiza seu WhatsApp e aumenta suas vendas</p>
-            <video class="hero-video" controls playsinline loading="lazy" poster="./assets/images/operacao.png"
-                aria-label="Vídeo de apresentação da plataforma LumiTalk - Centralize atendimentos no WhatsApp com IA">
-                <source src="./assets/manual/lumitalk/apresentacao.mp4" type="video/mp4">
-            </video>
-            <br />
-            <div class="hero-cta-group">
-                <a href="#cadastro-rapido" class="cta-button">Começar grátis agora</a>
-                <a href="#como-funciona" class="cta-button cta-secondary">Ver como funciona em 1 minuto</a>
+            <div class="hero-visual-band">
+                <div class="hero-video-block">
+                    <p class="hero-video-label">Vídeo curto: como funciona na prática (começa sozinho, sem som)</p>
+                    <video class="hero-video" controls playsinline autoplay muted loop poster="./assets/images/operacao.png"
+                        aria-label="Vídeo de apresentação LumiTalk — ative o som pelo controle se quiser ouvir">
+                        <source src="./assets/manual/lumitalk/apresentacao.mp4" type="video/mp4">
+                    </video>
+                    <p class="hero-sound-hint">Auto-play sem som (navegador). Clique em play / ícone de volume para ouvir.</p>
+                </div>
             </div>
-            <p class="hero-proof">Configuração em menos de 5 minutos • Sem cartão de crédito • Use seu próprio número</p>
+
+            <div class="hero-cta-group">
+                <a href="#cadastro-rapido" class="cta-button">Testar agora — 60 segundos</a>
+                <a href="https://app.lumitalk.com.br" class="cta-button cta-secondary">Já tenho conta — entrar</a>
+            </div>
+            <p class="hero-urgency">Quanto mais cedo conectar, menos conversa perdida esta semana</p>
+            <p class="hero-proof">Sem cartão • Use seu próprio WhatsApp • Onboarding guiado para você sair do zero rápido</p>
 
             <form id="cadastro-rapido" class="signup-form" novalidate>
-                <h3>Crie sua conta gratuita agora</h3>
-                <p>Sem cartão de crédito. Você recebe acesso imediato à plataforma após o cadastro.</p>
+                <div class="signup-progress" aria-hidden="true">
+                    <span class="signup-dot is-active" data-step="1"></span>
+                    <span class="signup-dot" data-step="2"></span>
+                </div>
+                <h3>Teste grátis em 2 passos rápidos</h3>
+                <p>Passo 1: só contato. Passo 2: empresa, seu nome e senha. Mesmo cadastro de sempre, menos peso visual de uma vez.</p>
 
-                <div class="signup-grid">
-                    <div class="signup-field">
-                        <label for="cadastroEmpresa">Nome da empresa</label>
-                        <input id="cadastroEmpresa" type="text" name="nome" placeholder="Ex: Loja Exemplo" required>
+                <div id="signup-step1" class="signup-step is-visible">
+                    <div class="signup-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                        <div class="signup-field">
+                            <label for="cadastroEmail">E-mail</label>
+                            <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" autocomplete="email" required>
+                        </div>
+                        <div class="signup-field">
+                            <label for="cadastroCelular">WhatsApp (com DDD)</label>
+                            <input id="cadastroCelular" type="tel" name="celular" placeholder="(11) 99999-9999" autocomplete="tel" required>
+                        </div>
                     </div>
-                    <div class="signup-field">
-                        <label for="cadastroContato">Seu nome</label>
-                        <input id="cadastroContato" type="text" name="contato" placeholder="Seu nome completo" required>
-                    </div>
-                    <div class="signup-field">
-                        <label for="cadastroEmail">E-mail</label>
-                        <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" required>
-                    </div>
-                    <div class="signup-field">
-                        <label for="cadastroCelular">WhatsApp</label>
-                        <input id="cadastroCelular" type="tel" name="celular" placeholder="(11) 99999-9999" required>
-                    </div>
-                    <div class="signup-field">
-                        <label for="cadastroSenha">Senha</label>
-                        <input id="cadastroSenha" type="password" name="senha" placeholder="Mínimo 8 caracteres" required>
-                    </div>
-                    <div class="signup-field">
-                        <label for="cadastroConfirmarSenha">Confirmar senha</label>
-                        <input id="cadastroConfirmarSenha" type="password" name="confirmarSenha" placeholder="Repita a senha" required>
+                    <div class="signup-actions">
+                        <button type="button" class="cta-button" id="cadastroContinuar">Continuar</button>
+                        <span class="signup-note">Sem cartão. Acesso após concluir o passo 2.</span>
                     </div>
                 </div>
 
-                <div class="signup-actions">
-                    <button type="submit" class="cta-button" id="cadastroSubmit">Criar conta grátis</button>
-                    <span class="signup-note">Ao continuar, você concorda com o uso da plataforma LumiTalk.</span>
+                <div id="signup-step2" class="signup-step">
+                    <div class="signup-grid">
+                        <div class="signup-field">
+                            <label for="cadastroEmpresa">Nome da empresa</label>
+                            <input id="cadastroEmpresa" type="text" name="nome" placeholder="Ex: Loja Exemplo" autocomplete="organization" required>
+                        </div>
+                        <div class="signup-field">
+                            <label for="cadastroContato">Seu nome</label>
+                            <input id="cadastroContato" type="text" name="contato" placeholder="Nome do responsável" autocomplete="name" required>
+                        </div>
+                        <div class="signup-field" style="grid-column: 1 / -1;">
+                            <label for="cadastroSenha">Senha (mín. 8 caracteres)</label>
+                            <input id="cadastroSenha" type="password" name="senha" placeholder="Crie uma senha segura" autocomplete="new-password" minlength="8" required>
+                        </div>
+                    </div>
+                    <div class="signup-actions">
+                        <button type="button" class="signup-back" id="cadastroVoltar">← Voltar</button>
+                        <button type="submit" class="cta-button" id="cadastroSubmit">Criar conta e entrar</button>
+                        <span class="signup-note">Ao continuar, você concorda com o uso da plataforma LumiTalk.</span>
+                    </div>
                 </div>
+
+                <p class="signup-app-fallback">Prefere cadastrar direto no app? <a href="https://app.lumitalk.com.br">Abrir app.lumitalk.com.br</a></p>
                 <div class="signup-error" id="cadastroErro" style="display:none;"></div>
             </form>
+        </div>
+    </section>
+
+    <!-- PROVA VISUAL + ANTES/DEPOIS (processo) -->
+    <section id="prova-visual" style="padding:72px 0;background:#fff;text-align:center" aria-labelledby="prova-visual-title">
+        <div class="container">
+            <h2 id="prova-visual-title" class="section-title">Prova visual + o que muda na operação</h2>
+            <p class="section-subtitle">Números de venda dependem do seu nicho e da velocidade de resposta — abaixo é o que clientes costumam sentir quando a primeira resposta deixa de ser gargalo.</p>
+            <div class="prova-visual-wrap">
+                <div class="prova-card bad">
+                    <h3>Antes</h3>
+                    <p>Lead manda mensagem, espera dezenas de minutos ou horas, some do funil ou negocia com quem respondeu primeiro.</p>
+                </div>
+                <div class="prova-card good">
+                    <h3>Depois</h3>
+                    <p>Primeira resposta em segundos (IA ou roteiro), fila visível pra equipe, humano assume quando for venda que precisa de pessoa.</p>
+                </div>
+            </div>
+            <figure class="prova-visual-figure">
+                <img src="./assets/images/operacao.png" width="1200" height="675" loading="lazy"
+                    alt="Outra visão do painel LumiTalk com conversas do WhatsApp centralizadas">
+                <figcaption>Mesma base usada no topo da página — substitua por print de conversa ou métrica autorizada quando tiver material de cliente.</figcaption>
+            </figure>
         </div>
     </section>
 
     <!-- PROBLEMAS QUE VOCÊ RESOLVE -->
     <section id="problemas" style="padding:80px 0;background:#fff;text-align:center" aria-labelledby="problemas-title">
         <div class="container">
-            <h2 id="problemas-title" class="section-title">Você está perdendo vendas no WhatsApp quando:</h2>
+            <h2 id="problemas-title" class="section-title">Isso dói no bolso quando você vende pelo WhatsApp</h2>
             <ul class="problemas-lista">
-                <li><i class="fas fa-times-circle"></i> demora para responder clientes</li>
-                <li><i class="fas fa-times-circle"></i> não atende fora do horário comercial</li>
-                <li><i class="fas fa-times-circle"></i> esquece mensagens importantes</li>
-                <li><i class="fas fa-times-circle"></i> perde leads interessados</li>
-                <li><i class="fas fa-times-circle"></i> não consegue atender todos ao mesmo tempo</li>
+                <li><i class="fas fa-times-circle"></i> o lead entra quente e esfria porque ninguém responde na hora</li>
+                <li><i class="fas fa-times-circle"></i> à noite ou no fim de semana a caixa enche e a venda vai pra quem atende</li>
+                <li><i class="fas fa-times-circle"></i> mensagem importante some no meio de grupo, status ou outro número</li>
+                <li><i class="fas fa-times-circle"></i> você paga anúncio ou manda e-mail — e perde na última milha no inbox</li>
+                <li><i class="fas fa-times-circle"></i> um atendente só não dá conta; vários sem painel viram caos</li>
             </ul>
             <p class="problemas-solucao">O LumiTalk resolve tudo isso automaticamente.</p>
         </div>
@@ -1300,28 +1625,28 @@
     <!-- RESULTADOS REAIS -->
     <section id="recursos" style="padding:70px 0;background:#f8f9fa;text-align:center" aria-labelledby="recursos-title">
         <div class="container">
-            <h2 id="recursos-title" class="section-title">Resultados reais para empresas que vendem pelo WhatsApp</h2>
-            <p class="section-subtitle">Empresas que usam LumiTalk respondem mais rápido, convertem mais clientes e economizam tempo todos os dias.</p>
+            <h2 id="recursos-title" class="section-title">O que muda quando a primeira resposta deixa de ser lenta</h2>
+            <p class="section-subtitle">Operações que encurtaram tempo até a primeira resposta com automação relatam mais conversa concluída e menos lead “morto” no inbox. Os percentuais abaixo refletem cenários de uso — seu resultado depende do funil e do ticket.</p>
 
             <div class="recursos-grid">
                 <div class="recurso-item">
                     <i class="fas fa-bolt recurso-icon" aria-hidden="true"></i>
-                    <h3>Resposta até 80% mais rápida</h3>
-                    <p>Clientes não esperam. Respostas instantâneas aumentam as chances de venda.</p>
+                    <h3>Até 80% mais rápido na primeira resposta</h3>
+                    <p>Menos fila parada: IA ou fluxo responde na hora; sua equipe entra quando a conversa vale o tempo humano.</p>
                 </div>
                 <div class="recurso-item">
                     <i class="fas fa-chart-line recurso-icon" aria-hidden="true"></i>
-                    <h3>Aumento médio de 32% nas vendas</h3>
-                    <p>Atenda no momento certo e converta mais conversas em clientes.</p>
+                    <h3>Até 32% mais vendas no funil</h3>
+                    <p>Quando velocidade e follow-up melhoram, mais conversas viram pedido — especialmente em oferta sensível a tempo de resposta.</p>
                 </div>
                 <div class="recurso-item">
                     <i class="fas fa-clock recurso-icon" aria-hidden="true"></i>
-                    <h3>Atendimento automático 24 horas</h3>
-                    <p>Nunca perca uma oportunidade, mesmo fora do horário comercial.</p>
+                    <h3>Cobertura 24h sem plantão forçado</h3>
+                    <p>Cliente recebe retorno fora do expediente; de manhã sua equipe vê tudo organizado no painel.</p>
                 </div>
             </div>
 
-            <p style="margin-top:20px;color:#777">Plataforma segura • Dados criptografados • Conformidade LGPD</p>
+            <p style="margin-top:20px;color:#777">Plataforma segura • Dados criptografados • Conformidade LGPD • Publique depoimento com nome/logo assim que tiver autorização — isso sobe conversão de novo tráfego.</p>
         </div>
     </section>
 
@@ -1468,9 +1793,10 @@
     <section id="cta-final" style="padding:90px 0;text-align:center;background:linear-gradient(135deg, var(--cor-secundaria) 0%, #0f2942 100%);color:#fff" aria-labelledby="cta-final-title">
         <div class="container">
             <p class="urgencia-cta">Vagas limitadas para novos testes este mês.</p>
-            <h2 id="cta-final-title" class="section-title" style="color:#fff">Comece a vender mais pelo WhatsApp hoje</h2>
+            <h2 id="cta-final-title" class="section-title" style="color:#fff">Cada dia sem resposta rápida é lead jogado fora</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.88);margin-top:-12px">Teste grátis, veja o painel com seu WhatsApp e meça o tempo até a primeira resposta.</p>
             <div class="hero-cta-group" style="margin-top:30px">
-                <a href="https://app.lumitalk.com.br" class="cta-button">Começar grátis agora</a>
+                <a href="#cadastro-rapido" class="cta-button">Testar agora — leva 1 minuto</a>
                 <a href="https://api.whatsapp.com/send?phone=5511951613341" class="cta-button cta-secondary">Falar com especialista</a>
             </div>
         </div>
@@ -1733,6 +2059,24 @@
 
         document.addEventListener('DOMContentLoaded', carregarPlanos);
 
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const MENU_BREAKPOINT = 1100;
+
+        function closeMobileNav() {
+            if (!navLinks || !menuToggle) return;
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        function setMobileNavOpen(open) {
+            if (!navLinks || !menuToggle) return;
+            navLinks.classList.toggle('active', open);
+            menuToggle.classList.toggle('active', open);
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1743,26 +2087,33 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
+                    if (window.innerWidth <= MENU_BREAKPOINT) {
+                        closeMobileNav();
+                    }
                 }
             });
         });
 
-        // Menu toggle mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+        // Menu toggle (layout colapsado ≤1100px)
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                const willOpen = !navLinks.classList.contains('active');
+                setMobileNavOpen(willOpen);
+            });
+        }
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth > MENU_BREAKPOINT) return;
+            if (!menuToggle || !navLinks) return;
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                closeMobileNav();
+            }
         });
 
-        // Fecha o menu ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > MENU_BREAKPOINT) {
+                closeMobileNav();
             }
         });
 
@@ -1776,10 +2127,55 @@
             }
         });
 
-        // Cadastro rápido inline (melhor fluxo de conversão)
+        // Cadastro em 2 passos (menos fricção visual) + API inalterada
         const cadastroForm = document.getElementById('cadastro-rapido');
         const cadastroSubmit = document.getElementById('cadastroSubmit');
         const cadastroErro = document.getElementById('cadastroErro');
+        const step1El = document.getElementById('signup-step1');
+        const step2El = document.getElementById('signup-step2');
+        const btnContinuar = document.getElementById('cadastroContinuar');
+        const btnVoltar = document.getElementById('cadastroVoltar');
+        const progressDots = document.querySelectorAll('.signup-progress .signup-dot');
+
+        function setCadastroStep(step) {
+            if (!step1El || !step2El) return;
+            const s = step === 2 ? 2 : 1;
+            step1El.classList.toggle('is-visible', s === 1);
+            step2El.classList.toggle('is-visible', s === 2);
+            progressDots.forEach((dot) => {
+                const n = parseInt(dot.getAttribute('data-step'), 10);
+                dot.classList.toggle('is-active', n === s);
+            });
+        }
+
+        if (btnContinuar && step1El && step2El) {
+            btnContinuar.addEventListener('click', () => {
+                cadastroErro.style.display = 'none';
+                cadastroErro.textContent = '';
+                const email = document.getElementById('cadastroEmail').value.trim();
+                const celular = document.getElementById('cadastroCelular').value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    cadastroErro.textContent = 'Informe um e-mail válido para continuar.';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+                if (!celular || celular.replace(/\D/g, '').length < 10) {
+                    cadastroErro.textContent = 'Informe um WhatsApp com DDD (10 ou 11 dígitos).';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+                setCadastroStep(2);
+                document.getElementById('cadastroEmpresa')?.focus();
+            });
+        }
+
+        if (btnVoltar) {
+            btnVoltar.addEventListener('click', () => {
+                cadastroErro.style.display = 'none';
+                cadastroErro.textContent = '';
+                setCadastroStep(1);
+            });
+        }
 
         if (cadastroForm) {
             cadastroForm.addEventListener('submit', async (e) => {
@@ -1792,22 +2188,21 @@
                 const email = document.getElementById('cadastroEmail').value.trim();
                 const celular = document.getElementById('cadastroCelular').value.trim();
                 const senha = document.getElementById('cadastroSenha').value;
-                const confirmarSenha = document.getElementById('cadastroConfirmarSenha').value;
 
-                if (!empresa || !contato || !email || !celular || !senha || !confirmarSenha) {
-                    cadastroErro.textContent = 'Preencha todos os campos para criar sua conta.';
+                if (!step2El.classList.contains('is-visible')) {
+                    cadastroErro.textContent = 'Use «Continuar» após preencher e-mail e WhatsApp.';
+                    cadastroErro.style.display = 'block';
+                    return;
+                }
+
+                if (!empresa || !contato || !email || !celular || !senha) {
+                    cadastroErro.textContent = 'Preencha empresa, seu nome e senha para criar a conta.';
                     cadastroErro.style.display = 'block';
                     return;
                 }
 
                 if (senha.length < 8) {
                     cadastroErro.textContent = 'A senha deve ter pelo menos 8 caracteres.';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-
-                if (senha !== confirmarSenha) {
-                    cadastroErro.textContent = 'As senhas não conferem.';
                     cadastroErro.style.display = 'block';
                     return;
                 }
@@ -1824,7 +2219,7 @@
                     contato,
                     celular,
                     senha,
-                    confirmarSenha
+                    confirmarSenha: senha
                 };
 
                 try {
@@ -1845,7 +2240,6 @@
                         throw new Error(msg);
                     }
 
-                    // Google Ads — conversão (cadastro concluído); event_callback evita perder o hit no redirect
                     const appUrl = 'https://app.lumitalk.com.br';
                     let redirectDone = false;
                     function redirectToApp() {
