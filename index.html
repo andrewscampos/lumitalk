@@ -566,34 +566,6 @@
             text-transform: uppercase;
         }
 
-        .hero-visual-band {
-            max-width: 920px;
-            margin: 32px auto 0;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero-video-block {
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .hero-visual-band .hero-video-block .hero-video-label {
-            text-align: center;
-        }
-
-        .hero-visual-band .hero-video {
-            margin-top: 18px;
-        }
-
-        .hero-sound-hint {
-            font-size: 12px !important;
-            opacity: 0.75 !important;
-            margin-top: 8px !important;
-            margin-bottom: 0 !important;
-        }
-
         .signup-progress {
             display: flex;
             gap: 8px;
@@ -610,29 +582,6 @@
 
         .signup-progress .signup-dot.is-active {
             background: var(--cor-principal);
-        }
-
-        .signup-step {
-            display: none;
-        }
-
-        .signup-step.is-visible {
-            display: block;
-        }
-
-        .signup-back {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 13px;
-            text-decoration: underline;
-            cursor: pointer;
-            padding: 0;
-            font-family: inherit;
-        }
-
-        .signup-back:hover {
-            color: #fff;
         }
 
         .signup-app-fallback {
@@ -1366,15 +1315,6 @@
                 min-height: auto;
             }
 
-            .hero-video {
-                margin-top: 40px;
-                border-radius: 12px;
-            }
-
-            .hero-video-block .hero-video {
-                margin-top: 16px;
-            }
-
             .hero-cta-group {
                 display: flex;
                 flex-direction: column;
@@ -1505,80 +1445,42 @@
     <!-- HERO -->
     <section id="inicio">
         <div class="container">
-            <h1>Pare de perder cliente no WhatsApp em menos de 24h — sem contratar ninguém</h1>
-            <p class="hero-lead">Se o lead cai no inbox e você demora a responder, ele compra do concorrente. O LumiTalk coloca IA + sua equipe no mesmo painel: primeira resposta em segundos, 24 horas, no <strong>seu</strong> número.</p>
-            <ul class="hero-micro-list" aria-label="Situações que o LumiTalk resolve">
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Você recebe lead e não responde rápido o bastante</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fora do horário, a caixa enche e ninguém vê a tempo</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Vários números ou atendentes viram bagunça e mensagem perdida</li>
+            <h1>Você não está perdendo “mensagens”. Você está perdendo dinheiro.</h1>
+            <p class="hero-lead">O lead chega no seu WhatsApp, espera, você responde tarde… e ele some. A pior parte: você nem percebe quantas vendas morreu no silêncio. O LumiTalk corta esse buraco com IA + organização de atendimento.</p>
+            <ul class="hero-micro-list" aria-label="Dores que mais derrubam conversão no WhatsApp">
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> O cliente pergunta preço e você responde quando ele já comprou</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> A caixa enche, ninguém tem visão de fila e follow-up vira sorte</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Você paga tráfego / manda e-mail — e perde na última milha no inbox</li>
             </ul>
 
-            <div class="hero-visual-band">
-                <div class="hero-video-block">
-                    <p class="hero-video-label">Vídeo curto: como funciona na prática (começa sozinho, sem som)</p>
-                    <video class="hero-video" controls playsinline autoplay muted loop poster="./assets/images/operacao.png"
-                        aria-label="Vídeo de apresentação LumiTalk — ative o som pelo controle se quiser ouvir">
-                        <source src="./assets/manual/lumitalk/apresentacao.mp4" type="video/mp4">
-                    </video>
-                    <p class="hero-sound-hint">Auto-play sem som (navegador). Clique em play / ícone de volume para ouvir.</p>
-                </div>
-            </div>
-
             <div class="hero-cta-group">
-                <a href="#cadastro-rapido" class="cta-button">Testar agora — 60 segundos</a>
+                <a href="#cadastro-rapido" class="cta-button">Quero ver o “buraco” agora</a>
                 <a href="https://app.lumitalk.com.br" class="cta-button cta-secondary">Já tenho conta — entrar</a>
             </div>
-            <p class="hero-urgency">Quanto mais cedo conectar, menos conversa perdida esta semana</p>
-            <p class="hero-proof">Sem cartão • Use seu próprio WhatsApp • Onboarding guiado para você sair do zero rápido</p>
+            <p class="hero-urgency">Se você responde em minutos (não segundos), está deixando dinheiro na mesa</p>
+            <p class="hero-proof">Sem cartão • Você vê como funciona antes de “casar” com ferramenta • Cancele quando quiser</p>
 
             <form id="cadastro-rapido" class="signup-form" novalidate>
-                <div class="signup-progress" aria-hidden="true">
-                    <span class="signup-dot is-active" data-step="1"></span>
-                    <span class="signup-dot" data-step="2"></span>
-                </div>
-                <h3>Teste grátis em 2 passos rápidos</h3>
-                <p>Passo 1: só contato. Passo 2: empresa, seu nome e senha. Mesmo cadastro de sempre, menos peso visual de uma vez.</p>
+                <h3>Me mostre onde estou perdendo lead</h3>
+                <p>Coloque seu e-mail e crie uma senha. Você entra e vê o painel (e o porquê do WhatsApp “vazar” venda).</p>
 
-                <div id="signup-step1" class="signup-step is-visible">
-                    <div class="signup-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-                        <div class="signup-field">
-                            <label for="cadastroEmail">E-mail</label>
-                            <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" autocomplete="email" required>
-                        </div>
-                        <div class="signup-field">
-                            <label for="cadastroCelular">WhatsApp (com DDD)</label>
-                            <input id="cadastroCelular" type="tel" name="celular" placeholder="(11) 99999-9999" autocomplete="tel" required>
-                        </div>
+                <div class="signup-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                    <div class="signup-field">
+                        <label for="cadastroEmail">E-mail</label>
+                        <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" autocomplete="email" required>
                     </div>
-                    <div class="signup-actions">
-                        <button type="button" class="cta-button" id="cadastroContinuar">Continuar</button>
-                        <span class="signup-note">Sem cartão. Acesso após concluir o passo 2.</span>
+                    <div class="signup-field">
+                        <label for="cadastroSenha">Senha (mín. 8 caracteres)</label>
+                        <input id="cadastroSenha" type="password" name="senha" placeholder="Crie uma senha" autocomplete="new-password" minlength="8" required>
                     </div>
                 </div>
 
-                <div id="signup-step2" class="signup-step">
-                    <div class="signup-grid">
-                        <div class="signup-field">
-                            <label for="cadastroEmpresa">Nome da empresa</label>
-                            <input id="cadastroEmpresa" type="text" name="nome" placeholder="Ex: Loja Exemplo" autocomplete="organization" required>
-                        </div>
-                        <div class="signup-field">
-                            <label for="cadastroContato">Seu nome</label>
-                            <input id="cadastroContato" type="text" name="contato" placeholder="Nome do responsável" autocomplete="name" required>
-                        </div>
-                        <div class="signup-field" style="grid-column: 1 / -1;">
-                            <label for="cadastroSenha">Senha (mín. 8 caracteres)</label>
-                            <input id="cadastroSenha" type="password" name="senha" placeholder="Crie uma senha segura" autocomplete="new-password" minlength="8" required>
-                        </div>
-                    </div>
-                    <div class="signup-actions">
-                        <button type="button" class="signup-back" id="cadastroVoltar">← Voltar</button>
-                        <button type="submit" class="cta-button" id="cadastroSubmit">Criar conta e entrar</button>
-                        <span class="signup-note">Ao continuar, você concorda com o uso da plataforma LumiTalk.</span>
-                    </div>
+                <div class="signup-actions">
+                    <button type="submit" class="cta-button" id="cadastroSubmit">Entrar e conferir</button>
+                    <span class="signup-note">Sem cartão. Se não fizer sentido, você sai.</span>
                 </div>
 
-                <p class="signup-app-fallback">Prefere cadastrar direto no app? <a href="https://app.lumitalk.com.br">Abrir app.lumitalk.com.br</a></p>
+                <p class="signup-app-fallback">Prefere falar com alguém agora? <a href="https://api.whatsapp.com/send?phone=5511951613341">Chamar no WhatsApp</a></p>
                 <div class="signup-error" id="cadastroErro" style="display:none;"></div>
             </form>
         </div>
@@ -2127,55 +2029,10 @@
             }
         });
 
-        // Cadastro em 2 passos (menos fricção visual) + API inalterada
+        // Cadastro ultra-leve (e-mail + senha). Observação: criação completa pode exigir mais dados no app.
         const cadastroForm = document.getElementById('cadastro-rapido');
         const cadastroSubmit = document.getElementById('cadastroSubmit');
         const cadastroErro = document.getElementById('cadastroErro');
-        const step1El = document.getElementById('signup-step1');
-        const step2El = document.getElementById('signup-step2');
-        const btnContinuar = document.getElementById('cadastroContinuar');
-        const btnVoltar = document.getElementById('cadastroVoltar');
-        const progressDots = document.querySelectorAll('.signup-progress .signup-dot');
-
-        function setCadastroStep(step) {
-            if (!step1El || !step2El) return;
-            const s = step === 2 ? 2 : 1;
-            step1El.classList.toggle('is-visible', s === 1);
-            step2El.classList.toggle('is-visible', s === 2);
-            progressDots.forEach((dot) => {
-                const n = parseInt(dot.getAttribute('data-step'), 10);
-                dot.classList.toggle('is-active', n === s);
-            });
-        }
-
-        if (btnContinuar && step1El && step2El) {
-            btnContinuar.addEventListener('click', () => {
-                cadastroErro.style.display = 'none';
-                cadastroErro.textContent = '';
-                const email = document.getElementById('cadastroEmail').value.trim();
-                const celular = document.getElementById('cadastroCelular').value.trim();
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    cadastroErro.textContent = 'Informe um e-mail válido para continuar.';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-                if (!celular || celular.replace(/\D/g, '').length < 10) {
-                    cadastroErro.textContent = 'Informe um WhatsApp com DDD (10 ou 11 dígitos).';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-                setCadastroStep(2);
-                document.getElementById('cadastroEmpresa')?.focus();
-            });
-        }
-
-        if (btnVoltar) {
-            btnVoltar.addEventListener('click', () => {
-                cadastroErro.style.display = 'none';
-                cadastroErro.textContent = '';
-                setCadastroStep(1);
-            });
-        }
 
         if (cadastroForm) {
             cadastroForm.addEventListener('submit', async (e) => {
@@ -2183,25 +2040,16 @@
                 cadastroErro.style.display = 'none';
                 cadastroErro.textContent = '';
 
-                const empresa = document.getElementById('cadastroEmpresa').value.trim();
-                const contato = document.getElementById('cadastroContato').value.trim();
                 const email = document.getElementById('cadastroEmail').value.trim();
-                const celular = document.getElementById('cadastroCelular').value.trim();
                 const senha = document.getElementById('cadastroSenha').value;
 
-                if (!step2El.classList.contains('is-visible')) {
-                    cadastroErro.textContent = 'Use «Continuar» após preencher e-mail e WhatsApp.';
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    cadastroErro.textContent = 'Informe um e-mail válido.';
                     cadastroErro.style.display = 'block';
                     return;
                 }
 
-                if (!empresa || !contato || !email || !celular || !senha) {
-                    cadastroErro.textContent = 'Preencha empresa, seu nome e senha para criar a conta.';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-
-                if (senha.length < 8) {
+                if (!senha || senha.length < 8) {
                     cadastroErro.textContent = 'A senha deve ter pelo menos 8 caracteres.';
                     cadastroErro.style.display = 'block';
                     return;
@@ -2209,59 +2057,25 @@
 
                 cadastroSubmit.disabled = true;
                 const originalText = cadastroSubmit.textContent;
-                cadastroSubmit.textContent = 'Criando conta...';
+                cadastroSubmit.textContent = 'Abrindo painel...';
 
-                const payload = {
-                    tipo: 'PJ',
-                    nome: empresa,
-                    documento: '',
-                    email,
-                    contato,
-                    celular,
-                    senha,
-                    confirmarSenha: senha
-                };
+                // Tenta abrir o app já com o e-mail (se o app ignorar, segue normal)
+                const appUrl = `https://app.lumitalk.com.br/?email=${encodeURIComponent(email)}`;
 
+                // Evento leve (intenção). Conversão real ideal é no cadastro concluído dentro do app.
                 try {
-                    const resp = await fetch('https://api.lumigateway.com.br/auth/company/cadastro', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!resp.ok) {
-                        let msg = 'Não foi possível criar sua conta. Tente novamente em instantes.';
-                        try {
-                            const data = await resp.json();
-                            if (data && (data.mensagem || data.message)) {
-                                msg = data.mensagem || data.message;
-                            }
-                        } catch (_) { }
-                        throw new Error(msg);
-                    }
-
-                    const appUrl = 'https://app.lumitalk.com.br';
-                    let redirectDone = false;
-                    function redirectToApp() {
-                        if (redirectDone) return;
-                        redirectDone = true;
-                        window.location.href = appUrl;
-                    }
                     if (typeof gtag === 'function') {
-                        gtag('event', 'conversion', {
-                            send_to: 'AW-839629314/0sAwCJHe35AcEIL0rpAD',
-                            event_callback: redirectToApp
-                        });
-                        setTimeout(redirectToApp, 2000);
-                    } else {
-                        redirectToApp();
+                        gtag('event', 'begin_checkout', { event_category: 'lead', event_label: 'landing_email_senha' });
                     }
-                } catch (err) {
-                    cadastroErro.textContent = err.message || 'Erro ao criar conta.';
-                    cadastroErro.style.display = 'block';
+                } catch (_) { }
+
+                window.location.href = appUrl;
+
+                // fallback visual caso o navegador bloqueie navegação (raro)
+                setTimeout(() => {
                     cadastroSubmit.disabled = false;
                     cadastroSubmit.textContent = originalText;
-                }
+                }, 2500);
             });
         }
     </script>
