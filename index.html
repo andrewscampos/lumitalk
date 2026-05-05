@@ -416,87 +416,6 @@
             animation: fadeInUp 1s ease 0.4s both;
         }
 
-        .signup-form {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 18px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            text-align: left;
-        }
-
-        .signup-form h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .signup-form p {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-bottom: 14px;
-        }
-
-        .signup-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px 16px;
-            margin-bottom: 10px;
-        }
-
-        .signup-field {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .signup-field label {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .signup-field input {
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            background: rgba(0, 0, 0, 0.15);
-            padding: 8px 14px;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .signup-field input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .signup-field input:focus {
-            outline: none;
-            border-color: var(--cor-principal);
-            box-shadow: 0 0 0 1px rgba(29, 222, 198, 0.6);
-        }
-
-        .signup-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 10px 16px;
-            margin-top: 8px;
-        }
-
-        .signup-actions .cta-button {
-            padding: 10px 26px;
-            font-size: 15px;
-        }
-
-        .signup-note {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .signup-error {
-            font-size: 12px;
-            color: #ffb3b3;
-            margin-top: 6px;
-        }
-
         .hero-apoio {
             font-size: 16px;
             opacity: 0.85;
@@ -564,36 +483,6 @@
             margin-bottom: 0;
             letter-spacing: 0.03em;
             text-transform: uppercase;
-        }
-
-        .signup-progress {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-            align-items: center;
-        }
-
-        .signup-progress .signup-dot {
-            width: 36px;
-            height: 4px;
-            border-radius: 99px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .signup-progress .signup-dot.is-active {
-            background: var(--cor-principal);
-        }
-
-        .signup-app-fallback {
-            margin-top: 12px;
-            font-size: 13px;
-            opacity: 0.88;
-            text-align: center;
-        }
-
-        .signup-app-fallback a {
-            color: var(--cor-principal);
-            font-weight: 600;
         }
 
         /* prova visual — antes/depois */
@@ -1330,26 +1219,6 @@
                 padding: 12px 22px;
             }
 
-            .signup-form {
-                padding: 16px 14px;
-            }
-
-            .signup-grid {
-                grid-template-columns: 1fr;
-                gap: 8px 12px;
-            }
-
-            .signup-actions {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-            }
-
-            .signup-actions .cta-button {
-                width: 100%;
-                justify-content: center;
-            }
-
             .plano-card.destaque {
                 transform: none;
             }
@@ -1430,9 +1299,9 @@
                         <li><a href="#para-quem">Para quem</a></li>
                         <li><a href="#planos">Planos</a></li>
                         <li><a href="#faq">FAQ</a></li>
-                        <li class="nav-cta-drawer"><a href="#cadastro-rapido" class="cta-button">Testar agora</a></li>
+                        <li class="nav-cta-drawer"><a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Testar agora</a></li>
                     </ul>
-                    <a href="#cadastro-rapido" class="cta-button nav-cta-bar">Testar agora</a>
+                    <a href="https://app.lumitalk.com.br/cadastro" class="cta-button nav-cta-bar">Testar agora</a>
                     <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu"
                         aria-expanded="false" aria-controls="navLinks">
                         <span></span><span></span><span></span>
@@ -1454,35 +1323,11 @@
             </ul>
 
             <div class="hero-cta-group">
-                <a href="#cadastro-rapido" class="cta-button">Quero ver o “buraco” agora</a>
+                <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Quero ver o “buraco” agora</a>
                 <a href="https://app.lumitalk.com.br" class="cta-button cta-secondary">Já tenho conta — entrar</a>
             </div>
             <p class="hero-urgency">Se você responde em minutos (não segundos), está deixando dinheiro na mesa</p>
             <p class="hero-proof">Sem cartão • Você vê como funciona antes de “casar” com ferramenta • Cancele quando quiser</p>
-
-            <form id="cadastro-rapido" class="signup-form" novalidate>
-                <h3>Me mostre onde estou perdendo lead</h3>
-                <p>Coloque seu e-mail e crie uma senha. Você entra e vê o painel (e o porquê do WhatsApp “vazar” venda).</p>
-
-                <div class="signup-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-                    <div class="signup-field">
-                        <label for="cadastroEmail">E-mail</label>
-                        <input id="cadastroEmail" type="email" name="email" placeholder="seuemail@empresa.com" autocomplete="email" required>
-                    </div>
-                    <div class="signup-field">
-                        <label for="cadastroSenha">Senha (mín. 8 caracteres)</label>
-                        <input id="cadastroSenha" type="password" name="senha" placeholder="Crie uma senha" autocomplete="new-password" minlength="8" required>
-                    </div>
-                </div>
-
-                <div class="signup-actions">
-                    <button type="submit" class="cta-button" id="cadastroSubmit">Entrar e conferir</button>
-                    <span class="signup-note">Sem cartão. Se não fizer sentido, você sai.</span>
-                </div>
-
-                <p class="signup-app-fallback">Prefere falar com alguém agora? <a href="https://api.whatsapp.com/send?phone=5511951613341">Chamar no WhatsApp</a></p>
-                <div class="signup-error" id="cadastroErro" style="display:none;"></div>
-            </form>
         </div>
     </section>
 
@@ -1504,7 +1349,7 @@
             <figure class="prova-visual-figure">
                 <img src="./assets/images/operacao.png" width="1200" height="675" loading="lazy"
                     alt="Outra visão do painel LumiTalk com conversas do WhatsApp centralizadas">
-                <figcaption>Mesma base usada no topo da página — substitua por print de conversa ou métrica autorizada quando tiver material de cliente.</figcaption>
+                <figcaption>Substitua por print de conversa ou métrica autorizada quando tiver material de cliente.</figcaption>
             </figure>
         </div>
     </section>
@@ -1698,7 +1543,7 @@
             <h2 id="cta-final-title" class="section-title" style="color:#fff">Cada dia sem resposta rápida é lead jogado fora</h2>
             <p class="section-subtitle" style="color:rgba(255,255,255,0.88);margin-top:-12px">Teste grátis, veja o painel com seu WhatsApp e meça o tempo até a primeira resposta.</p>
             <div class="hero-cta-group" style="margin-top:30px">
-                <a href="#cadastro-rapido" class="cta-button">Testar agora — leva 1 minuto</a>
+                <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Testar agora — leva 1 minuto</a>
                 <a href="https://api.whatsapp.com/send?phone=5511951613341" class="cta-button cta-secondary">Falar com especialista</a>
             </div>
         </div>
@@ -1734,7 +1579,7 @@
                         <li>Até 3 números WhatsApp</li>
                         <li>10.000 conversas/mês</li>
                     </ul>
-                    <a href="https://app.lumitalk.com.br" class="cta-button">Usar meu WhatsApp agora</a>
+                    <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Usar meu WhatsApp agora</a>
                 </div>
             </div>
 
@@ -1945,7 +1790,7 @@
                     ).join('')}
                             </ul>
                             
-                            <a href="https://app.lumitalk.com.br/" class="cta-button">${ctaText}</a>
+                            <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">${ctaText}</a>
                         </div>
                     `;
                 }).join('');
@@ -2028,56 +1873,6 @@
                 header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
             }
         });
-
-        // Cadastro ultra-leve (e-mail + senha). Observação: criação completa pode exigir mais dados no app.
-        const cadastroForm = document.getElementById('cadastro-rapido');
-        const cadastroSubmit = document.getElementById('cadastroSubmit');
-        const cadastroErro = document.getElementById('cadastroErro');
-
-        if (cadastroForm) {
-            cadastroForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                cadastroErro.style.display = 'none';
-                cadastroErro.textContent = '';
-
-                const email = document.getElementById('cadastroEmail').value.trim();
-                const senha = document.getElementById('cadastroSenha').value;
-
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    cadastroErro.textContent = 'Informe um e-mail válido.';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-
-                if (!senha || senha.length < 8) {
-                    cadastroErro.textContent = 'A senha deve ter pelo menos 8 caracteres.';
-                    cadastroErro.style.display = 'block';
-                    return;
-                }
-
-                cadastroSubmit.disabled = true;
-                const originalText = cadastroSubmit.textContent;
-                cadastroSubmit.textContent = 'Abrindo painel...';
-
-                // Tenta abrir o app já com o e-mail (se o app ignorar, segue normal)
-                const appUrl = `https://app.lumitalk.com.br/?email=${encodeURIComponent(email)}`;
-
-                // Evento leve (intenção). Conversão real ideal é no cadastro concluído dentro do app.
-                try {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'begin_checkout', { event_category: 'lead', event_label: 'landing_email_senha' });
-                    }
-                } catch (_) { }
-
-                window.location.href = appUrl;
-
-                // fallback visual caso o navegador bloqueie navegação (raro)
-                setTimeout(() => {
-                    cadastroSubmit.disabled = false;
-                    cadastroSubmit.textContent = originalText;
-                }, 2500);
-            });
-        }
     </script>
 
 </body>
