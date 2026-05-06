@@ -1299,9 +1299,9 @@
                         <li><a href="#para-quem">Para quem</a></li>
                         <li><a href="#planos">Planos</a></li>
                         <li><a href="#faq">FAQ</a></li>
-                        <li class="nav-cta-drawer"><a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Testar agora</a></li>
+                        <li class="nav-cta-drawer"><a href="https://app.lumitalk.com.br/?register=true" class="cta-button">Altere cadastro</a></li>
                     </ul>
-                    <a href="https://app.lumitalk.com.br/cadastro" class="cta-button nav-cta-bar">Testar agora</a>
+                    <a href="https://app.lumitalk.com.br/?register=true" class="cta-button nav-cta-bar">Altere cadastro</a>
                     <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu"
                         aria-expanded="false" aria-controls="navLinks">
                         <span></span><span></span><span></span>
@@ -1323,7 +1323,7 @@
             </ul>
 
             <div class="hero-cta-group">
-                <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Quero ver o “buraco” agora</a>
+                <a href="https://app.lumitalk.com.br/?register=true" class="cta-button">Altere cadastro</a>
                 <a href="https://app.lumitalk.com.br" class="cta-button cta-secondary">Já tenho conta — entrar</a>
             </div>
             <p class="hero-urgency">Se você responde em minutos (não segundos), está deixando dinheiro na mesa</p>
@@ -1543,7 +1543,7 @@
             <h2 id="cta-final-title" class="section-title" style="color:#fff">Cada dia sem resposta rápida é lead jogado fora</h2>
             <p class="section-subtitle" style="color:rgba(255,255,255,0.88);margin-top:-12px">Teste grátis, veja o painel com seu WhatsApp e meça o tempo até a primeira resposta.</p>
             <div class="hero-cta-group" style="margin-top:30px">
-                <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Testar agora — leva 1 minuto</a>
+                <a href="https://app.lumitalk.com.br/?register=true" class="cta-button">Altere cadastro</a>
                 <a href="https://api.whatsapp.com/send?phone=5511951613341" class="cta-button cta-secondary">Falar com especialista</a>
             </div>
         </div>
@@ -1579,7 +1579,7 @@
                         <li>Até 3 números WhatsApp</li>
                         <li>10.000 conversas/mês</li>
                     </ul>
-                    <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">Usar meu WhatsApp agora</a>
+                    <a href="https://app.lumitalk.com.br/?register=true" class="cta-button">Altere cadastro</a>
                 </div>
             </div>
 
@@ -1770,7 +1770,7 @@
 
                     const conversasFormatadas = plano.conversationMax.toLocaleString('pt-BR');
 
-                    const ctaText = plano.name === 'ENTERPRISE' ? 'Falar com Consultor' : 'Usar Meu WhatsApp Agora';
+                    const ctaText = plano.name === 'ENTERPRISE' ? 'Falar com Consultor' : 'Altere cadastro';
 
                     return `
                         <div class="plano-card ${isDestaque ? 'destaque' : ''}">
@@ -1790,7 +1790,7 @@
                     ).join('')}
                             </ul>
                             
-                            <a href="https://app.lumitalk.com.br/cadastro" class="cta-button">${ctaText}</a>
+                            <a href="https://app.lumitalk.com.br/?register=true" class="cta-button">${ctaText}</a>
                         </div>
                     `;
                 }).join('');
